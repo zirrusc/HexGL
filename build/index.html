@@ -1,0 +1,58 @@
+<doctype html>
+<html>
+	<head>
+		<title>Mobile Driver</title>
+		<meta charset='utf-8'>
+	</head>
+	<body>
+		<p>
+			リダイレクトしています。ちょっとまってね<br>
+			※自動でリダイレクトされない場合は、 JavaScript が無効になっているかサポートされていません。
+		</p>
+		<script>
+			function getUserAgent () {
+				var userAgent  = window.navigator.userAgent.toLowerCase(),
+					appVersion = window.navigator.appVersion.toLowerCase();
+				 
+				if (userAgent.indexOf('iphone') != -1)
+					return 'iphone';
+				if (userAgent.indexOf('ipad') != -1)
+					return 'ipad';
+				if (userAgent.indexOf('ipod') != -1)
+					return 'ipod';
+				if (userAgent.indexOf('android') != -1)
+					return 'android';
+				if (userAgent.indexOf('mobile') != -1)
+					return 'mobile';
+				if (userAgent.indexOf('msie') != -1)
+					return 'ie';
+				if (userAgent.indexOf('chrome') != -1)
+					return 'chrome';
+				if (userAgent.indexOf('gecko') != -1)
+					return 'firefox';
+				if (userAgent.indexOf('opera') != -1)
+					return 'opera';
+				if (userAgent.indexOf('safari') != -1)
+					return 'safari';
+					
+				return 'unknown';
+			}
+
+			function isMobile() {
+				var ua = getUserAgent();
+				
+				switch (ua) {
+				case 'iphone':
+				case 'ipad':
+				case 'ipod':
+				case 'android':
+				case 'mobile':
+					return true;
+				}
+				return false;
+			}
+			
+			location.href = isMobile() ? 'mobile.html' : 'pc.html';
+		</script>
+	</body>
+</html>
