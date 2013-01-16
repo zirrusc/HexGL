@@ -32,6 +32,8 @@ bkcore.hexgl.HexGL = function(opts)
 
 	this.track = bkcore.hexgl.tracks[ opts.track == undefined ? 'Cityscape' : opts.track ];
 
+	this.mode = opts.mode == undefined ? 'timeattack' : opts.mode;
+
 	if(this.half)
 	{
 		this.width /= 2;
@@ -137,16 +139,13 @@ bkcore.hexgl.HexGL.prototype.initGameplay = function()
 	var self = this;
 
 	this.gameplay = new bkcore.hexgl.Gameplay({
-		mode: "timeattack",
+		mode: this.mode,
 		hud: this.hud,
 		shipControls: this.components.shipControls,
+		cameraControls: this.components.cameraChase,
 		analyser: this.track.analyser,
 		pixelRatio: this.track.pixelRatio,
-		track: {
-			checkpoints: this.track.checkpoints,
-			spawn: this.track.spawn,
-			spawnRotation: this.track.spawnRotation
-		},
+		track: this.track,
 		onFinish: function() {
 			self.displayScore(this.finishTime, this.lapTimes);
 		}
@@ -157,7 +156,7 @@ bkcore.hexgl.HexGL.prototype.initGameplay = function()
 
 bkcore.hexgl.HexGL.prototype.displayScore = function(f, l)
 {
-	var t = 'cityscape';
+	var t = this.track;
 	var dc = this.document.getElementById("finish");
 	var ds = this.document.getElementById("finish-state");
 	var dh = this.document.getElementById("finish-hallmsg");
@@ -189,6 +188,9 @@ bkcore.hexgl.HexGL.prototype.displayScore = function(f, l)
 			{
 				dr != undefined && (dr.innerHTML = "New local record!");
 				localStorage['score-'+t+'-'+d] = f;
+
+				// Export race data
+				localStorage['race-'+t+'-replay'] = JSON.Stringify(this.gameplay.raceData.export());
 			}
 			else
 			{
