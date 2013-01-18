@@ -17,7 +17,6 @@
 			}
 			h1 {color: #666	; }
 			a { color:skyblue }
-			html, body, #main, canvas { width: 100%; height: 100%;}
 			canvas { pointer-events:none; }
 			#overlay{
 				position: absolute;
@@ -64,8 +63,6 @@
 
 		<script src="bkcore/hexgl/HexGL.js"></script>
 
-		<script src="replays/ffos-replay.js"></script>
-
 		<script>
 
 			var SCREEN_WIDTH = window.innerWidth;
@@ -85,13 +82,11 @@
 					height: SCREEN_HEIGHT,
 					container: container,
 					overlay: overlay,
-					quality: 0,
+					quality: bkcore.Utils.getURLParameter('quality'),
 					difficulty: bkcore.Utils.getURLParameter('difficulty'),
-					half: true,
-					mode: "replay",
-					track: 'Cityscape',
-					FFOS: true,
-					replayfile: ffosreplay
+					half: bkcore.Utils.getURLParameter('half'),
+					mode: bkcore.Utils.getURLParameter('mode'),
+					track: 'Cityscape'
 				});
 
 				hexGL.load({

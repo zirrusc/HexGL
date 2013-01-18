@@ -12,18 +12,8 @@ bkcore.hexgl.HUD = function(opts)
 {
 	var self = this;
 
-	this.visible = true;
-	this.messageOnly = false;
-
-	this.width = opts.width;
-	this.height = opts.height;
-
-	this.canvas = document.createElement('canvas');
-	this.canvas.width = this.width;
-	this.canvas.height = this.height;
-
-	this.ctx = this.canvas.getContext('2d');
-	this.ctx.textAlign = "center";
+	this.FFOS = opts.FFOS;
+	this.active = !opts.FFOS;
 
 	this.bg = opts.bg;//"textures/hud/hud-bg.png";
 
@@ -71,10 +61,30 @@ bkcore.hexgl.HUD = function(opts)
 
 	this.step = 0;
 	this.maxStep = 2;
+	
+	this.visible = true;
+	this.messageOnly = false;
+
+	this.width = opts.width;
+	this.height = opts.height;
+
+	if(!this.active)
+		return;
+
+	this.canvas = document.createElement('canvas');
+	this.canvas.width = this.width;
+	this.canvas.height = this.height;
+
+	this.ctx = this.canvas.getContext('2d');
+	this.ctx.textAlign = "center";
+
 };
 
 bkcore.hexgl.HUD.prototype.resize = function(w, h)
 {
+	if(!this.active)
+		return;
+
 	this.width = w;
 	this.height = h;
 	this.canvas.width = w;
@@ -83,6 +93,9 @@ bkcore.hexgl.HUD.prototype.resize = function(w, h)
 
 bkcore.hexgl.HUD.prototype.display = function(msg, duration)
 {
+	if(!this.active)
+		return;
+
 	this.messageTiming = 0;
 
 	if(this.message != "")
@@ -121,6 +134,9 @@ bkcore.hexgl.HUD.prototype.resetTime = function()
 
 bkcore.hexgl.HUD.prototype.update = function(speed, speedRatio, shield, shieldRatio)
 {
+	if(!this.active)
+		return;
+
 	var SCREEN_WIDTH = this.width;
 	var SCREEN_HEIGHT = this.height;
 

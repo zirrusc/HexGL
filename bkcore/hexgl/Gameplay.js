@@ -12,6 +12,8 @@ bkcore.hexgl.Gameplay = function(opts)
 {
 	var self = this;
 
+	this.replayfile = opts.replayfile;
+
 	this.startDelay = 1000;
 	this.countDownDelay = 1500;
 
@@ -131,15 +133,22 @@ bkcore.hexgl.Gameplay.prototype.start = function(opts)
 		this.hud.messageOnly = true;
 
 		try {
-			var d = localStorage['race-'+this.track.name+'-replay'];
-			if(d == undefined)
+			if(this.replayfile != null)
 			{
-				console.error('No replay data for '+'race-'+this.track.name+'-replay'+'.');
-				return false;
+				this.raceData.import(this.replayfile);
 			}
-			this.raceData.import(
-				JSON.parse(d)
-			);
+			else
+			{
+				var d = localStorage['race-'+this.track.name+'-replay'];
+				if(d == undefined)
+				{
+					console.error('No replay data for '+'race-'+this.track.name+'-replay'+'.');
+					return false;
+				}
+				this.raceData.import(
+					JSON.parse(d)
+				);
+			}
 		}
 		catch(e) { console.error('Bad replay format : '+e); return false; }
 	}

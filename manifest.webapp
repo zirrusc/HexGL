@@ -1,0 +1,15 @@
+{
+	"name": "HexGL v1.0.1-ffos-replay",
+	"description": "HexGL Benchmark - no input",
+	"launch_path": "http://hexgl.bkcore.com/ffos/index.html",
+	"type": "certified",
+	"icons": {
+		"128": "icon_128.png"
+	},
+	"developer": {
+		"name": "Thibaut Despoulain (BKcore)",
+		"url": "http://bkcore.com"
+	},
+	"default_locale": "en",
+	"orientation": ["landscape"]
+}

@@ -40,6 +40,9 @@ bkcore.hexgl.HexGL = function(opts)
 		this.height /=2;
 	}
 
+	this.FFOS = opts.FFOS == undefined ? false : opts.FFOS;
+	this.replayfile = opts.replayfile == undefined ? null : opts.replayfile;
+
 	this.settings = null;
 	this.renderer = null;
 	this.manager = null;
@@ -140,6 +143,7 @@ bkcore.hexgl.HexGL.prototype.initGameplay = function()
 
 	this.gameplay = new bkcore.hexgl.Gameplay({
 		mode: this.mode,
+		replayfile: this.replayfile,
 		hud: this.hud,
 		shipControls: this.components.shipControls,
 		cameraControls: this.components.cameraChase,
@@ -277,9 +281,10 @@ bkcore.hexgl.HexGL.prototype.initHUD = function()
 		font: "BebasNeueRegular",
 		bg: this.track.lib.get("images", "hud.bg"),
 		speed: this.track.lib.get("images", "hud.speed"),
-		shield: this.track.lib.get("images", "hud.shield")
+		shield: this.track.lib.get("images", "hud.shield"),
+		FFOS: this.FFOS
 	});	
-	this.containers.overlay.appendChild(this.hud.canvas);
+	if(this.hud.active) this.containers.overlay.appendChild(this.hud.canvas);
 }
 
 bkcore.hexgl.HexGL.prototype.initGameComposer = function()
@@ -295,17 +300,15 @@ bkcore.hexgl.HexGL.prototype.initGameComposer = function()
 
 	this.composers.game = new THREE.EffectComposer( this.renderer, renderTarget );
 
-	var effectScreen = new THREE.ShaderPass( THREE.ShaderExtras[ "screen" ] );				
-	var effectVignette = new THREE.ShaderPass( THREE.ShaderExtras[ "vignette" ] );
 
-	var effectHex = new THREE.ShaderPass( bkcore.threejs.Shaders[ "hexvignette" ] );
+	/*var effectHex = new THREE.ShaderPass( bkcore.threejs.Shaders[ "hexvignette" ] );
 	effectHex.uniforms[ 'size' ].value = 512.0 * (this.width/1633);
 	effectHex.uniforms[ 'rx' ].value = this.width;
 	effectHex.uniforms[ 'ry' ].value = this.height;
 	effectHex.uniforms[ 'tHex' ].texture = this.track.lib.get("textures", "hex");
 	effectHex.uniforms[ 'color' ].value = this.extras.vignetteColor;
 
-	effectHex.renderToScreen = true;
+	effectHex.renderToScreen = true;*/
 
 	this.composers.game.addPass( renderSky );
 	this.composers.game.addPass( renderModel );
@@ -328,8 +331,12 @@ bkcore.hexgl.HexGL.prototype.initGameComposer = function()
 		this.extras.bloom = effectBloom;
 	}
 
-	this.composers.game.addPass( effectHex );
-
+	//this.composers.game.addPass( effectHex );
+	
+	var effectScreen = new THREE.ShaderPass( THREE.ShaderExtras[ "screen" ] );				
+	effectScreen.renderToScreen = true;
+	
+	this.composers.game.addPass( effectScreen );
 	
 }
 
