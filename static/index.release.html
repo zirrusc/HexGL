@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<title>Mobile Driver</title>
+		<meta charset="utf-8">
+		<!--<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">-->
+		<link rel="icon" href="http://hexgl.bkcore.com/favicon.png" type="image/png">
+		<link rel="shortcut icon" href="http://hexgl.bkcore.com/favicon.png" type="image/png">
+		<link rel='stylesheet' href='bootstrap-3.0.3/css/bootstrap.min.css' type='text/css'>
+		<link rel="stylesheet" href="css/fonts.css" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="css/main.css?build=20120830B" type="text/css" charset="utf-8">
+	</head>
+
+	<body>
+	<div id="fb-root"></div>
+		<div id="beta">
+			<div id="header" class='jumbotron'>
+				<h1 class="vh">Mobile Driver</h1>
+				<div class='row'>
+					<div id="video" class='.col-xs-6'>
+						<iframe width="476" height="280" src="http://www.youtube.com/embed/se-oorr2zM8?rel=0" frameborder="0" allowfullscreen></iframe>
+					</div>
+					<div class='.col-xs-6 '>
+						<a id="play" class='btn btn-primary' onclick="bkcore.Utils.scrollTo('section-play');">Play &gt;</a>
+					</div>
+				</div>
+			</div>
+			<div id="content">
+				<h2 id="section-about" onclick="bkcore.Utils.scrollTo('section-about');">About HexGL</h2>
+				<div class="line">
+					<table class="about-table"><tr>
+						<td class="about-col2">
+							<h3>What is this?</h3>
+							<p><b>HexGL</b> is a futuristic, fast-paced racing game built by <a href="http://bkcore.com/" title="Visit the author's website" target="_blank">Thibaut Despoulain</a> using HTML5, Javascript and WebGL and a tribute to the original Wipeout and F-Zero series.</p>
+							<h3 class="bis">Credits.</h3>
+							<p>HexGL was built with love using <a class="threejs" href="http://mrdoob.github.com/three.js/" target="_blank">three.js</a>, a 3D library built on top of WebGL and maintained by <a href="https://twitter.com/mrdoob" target="_blank">Mr.doob</a> and <a href="https://twitter.com/alteredq" target="_blank">AlteredQualia</a>.
+							<br>I'd also like to thank <a href="http://nobiax.deviantart.com/" target="_blank">Nobiax</a> for the great metalic road texture, Charnel for the HexMKI base mesh, and all the beta-testers.</p>
+						</td>
+					</tr></table>
+				</div>
+
+				<h2 id="section-ladder" onclick="bkcore.Utils.scrollTo('section-ladder');">Hall Of Fame</h2>
+				<div class="line">
+					<!--<p><i>There is a known timer/ladder bug that may appear randomly and prevent score saving. I'm currently working on it, and will hopefuly correct this in next build (remember this is still a beta).</i></p>-->
+					<table class="ladder-table"><tr>
+						<td><h3>Cityscape (casual)</h3>
+							<div id="ladder-cityscape-casual"></div>
+						</td>
+						<td><h3>Cityscape (hard)</h3>
+							<div id="ladder-cityscape-hard"></div>
+						</td>
+					</tr></table>
+				</div>
+
+				<h2 id="section-play" onclick="bkcore.Utils.scrollTo('section-play');">Play HexGL</h2>
+				<div class="line" id="detector-play">
+					<table class="preset-table">
+						<tr>
+							<td><div class="preset-btn preset-head">
+								<i>1</i><span class="big">Select Quality</span>
+								<span class="small">This game should run at 60fps. If you find yourself lagging, please try a lesser quality level.</span>
+							</div></td>
+							<td><a id="preset-q0" onclick="setQuality(0);" class="preset-btn ns">
+								<span class="big">Mobile</span>
+								<span class="small">Low-grade GPUs<br>For laptops.<br><input type="checkbox" name="cbhalf" id="cbhalf"><label for="cbhalf">Use half resolution</label></span>
+							</a></td>
+							<td><a id="preset-q1" onclick="setQuality(1);" class="preset-btn ns">
+								<span class="big">Mainstream</span>
+								<span class="small">Mid-grade GPUs<br>For not-so-recent desktops and laptops.</span>
+							</a></td>
+							<td><a id="preset-q2" onclick="setQuality(2);" class="preset-btn ns active">
+								<span class="big">Ultra</span>
+								<span class="small">High-end GPUs<br>For recent harware.<br>GT x50, HD x770 and up.</span>
+							</a></td>
+						</tr>
+						<tr>
+							<td><div class="preset-btn preset-head">
+								<i>2</i><span class="big">Select Track</span>
+								<span class="small">As this is a beta, only one track is available for now. More to come later.</span>
+							</div></td>
+							<td><a id="preset-t0" onclick="void(0);" class="preset-btn ns active">
+								<img class="preset-track" src="thumbs/cityscape.png">
+								<span class="big preset-track-title">Cityscape</span>
+							</a></td>
+							<td><a id="preset-t1" onclick="void(0);" class="preset-btn ns disabled">
+								<img class="preset-track" src="thumbs/locked.png">
+								<span class="big preset-track-title">Locked</span>
+							</a></td>
+							<td><a id="preset-t2" onclick="void(0);" class="preset-btn ns disabled">
+								<img class="preset-track" src="thumbs/locked.png">
+								<span class="big preset-track-title">Locked</span>
+							</a></td>
+						</tr>
+						<tr>
+							<td><div class="preset-btn preset-head">
+								<i>3</i><span class="big">Select Craft</span>
+								<span class="small">As this is a beta, only one craft is available for now. More to come later.</span>
+							</div></td>
+							<td><a id="preset-t0" onclick="void(0);" class="preset-btn ns active">
+								<img class="preset-track" src="thumbs/hexmki.png">
+								<span class="big preset-track-title">Hex MKI</span>
+							</a></td>
+							<td><a id="preset-t1" onclick="void(0);" class="preset-btn ns disabled">
+								<img class="preset-track" src="thumbs/lockedc.png">
+								<span class="big preset-track-title">Locked</span>
+							</a></td>
+							<td><a id="preset-t2" onclick="void(0);" class="preset-btn ns disabled">
+								<img class="preset-track" src="thumbs/lockedc.png">
+								<span class="big preset-track-title">Locked</span>
+							</a></td>
+						</tr>
+						<tr>
+							<td><div class="preset-btn preset-head">
+								<i>4</i><span class="big">Get ready to play</span>
+								<span class="small">Have a look at the control keys, select your player name and let's go!</span>
+							</div></td>
+							<td><div class="preset-btn preset-head">
+								<span class="small">
+									<ul><li><b>&uarr;</b> - Forward</li>
+										<li><b>&larr; &rarr;</b> - Steer</li>
+										<li><b>Q/A</b> - Left airbrake</li>
+										<li><b>D/E</b> - right airbrake</li>
+										<li>-</li>
+										<li><b>Esc</b> - Restart race</li>
+										<li><b>F5</b> - Exit to home</li>
+									</ul>
+								</span>
+							</div></td>
+							<td><label class="playerlabel" for="playername">Player name</label>
+								<span class="playermask">_<i>_</i>_<i>_</i>_<i>_</i></span><input type="text" name="playername" id="playername" value="Player" maxlength="6">
+								<span class="small playersmall">This tag will only be used in the Hall Of Fame.</span>
+							</td>
+							<td><a id="start0" onclick="beta(0);" class="preset-btntext ns green">
+								START<br>( casual mode )
+							</a><a id="start1" onclick="beta(1);" class="preset-btntext ns">
+								START<br>( hard mode )
+							</a></td>
+						</tr>
+					</table>
+				</div>
+
+				<h2 id="section-faq" onclick="bkcore.Utils.scrollTo('section-faq');">Q &amp; A</h2>
+				<div class="line qanda" id="qanda">
+					<h3>The game feels slow or laggy, what should I do?</h3>
+					<p>There are three quality presets you can use: Mobile, Mainstream and Ultra. If your current preset feels laggy, try a lesser one.<br>If you're already using the Mobile preset, I'm sorry to inform you that your graphic card is not powerful enough to run the game (running an intel integrated GPU I guess?).<br>Also, this game has been developed and tested in Chrome and Firefox in their latest versions. If you are using another browser, I can't promise anything!</p>
+					<h3>Why doesn't my &lt;insert random key&gt; key work?</h3>
+					<p>Some keyboards are known to handle simultaneous key presses badly (I'm looking at you Logitech!). This means that it's possible that your keyboard doesn't support the UP+LEFT+Q combo for example. As this is a hardware issue, I can't do much about it, so I simply added control key variants.</p>
+					<h3>The game said I made it to the Hall Of Fame, so why don't I see myself up there?</h3>
+					<p>HexGL and its website are running on a low-spec'd shared server (I'm only a student remember?), so in order to save resources, the ladder is updated only once per page load. This means that all you have to do is hit F5 ;)</p>
+					<h3>Why isn't there any sound?</h3>
+					<p>Sound support (both background and SFX) has never been on top on my todo list during the development phase because the only browser to fully support the webAudio standard was Chrome. But things are evolving quickly, and Firefox will soon support this standard too, so expect some sound effects and music soon.</p>
+					<h3>When will the source code be available?</h3>
+					<p><a href="https://github.com/BKcore/HexGL" target="_blank">HexGL's source code is now on GitHub!</a>. The code is licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License unless specified otherwize. To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by-nc/3.0/" target="_blank">this page</a>.</p>
+					<h3>Why are you saying that the game is built with HTML5? It's WebGL!</h3>
+					<p>Actually, WebGL is part﻿ of the modern HTML5 standards. I'm using the HTML5 acronym in its general meaning to describe the whole pack of technology involved. It's also more meaningful for neophytes.<br>If you want to learn more about the technology, I suggest you take a look at <a href="http://www.html5rocks.com" target="_blank">HTML5Rocks</a>.</p>
+					<h3>This shouldn't be like this, but more like that. Why isn't there a..?</h3>
+					<p>Hold it. This is only a beta project, held by a single CS student so it's obviously far from being perfect. That said, I'm always looking for good suggestions and critics, so why don't you <a href="http://bkcore.com/contact.html" title="Contact the author">send me a note</a> with your thoughts and ideas ?</p>
+					<h3>I want to help. How can I?</h3>
+					<p>As with previous answer, if you want to help on this project, simply send me a note and we'll talk about it!<br>Furthermore, a simple way to help this project is to talk, tweet, and discuss about it :)</p>
+					<h3>There's a huge spelling mistake!</h3>
+					<p>This is not a question but I'll answer it anyway: I'm French! While this may sound like a bad excuse, it's legit. I'm doing my best to write understandable english, but I sometimes fail to notice an error. So again, if you happen to find a grammar or spelling mistake, just drop me a note and I'll correct it ASAP!</p>
+				</div>
+				<div class="line" id="footer">HexGL &copy; Thibaut Despoulain (BKcore)</div>
+			</div>
+		</div>
+		<div id="preloader"></div>
+		<div id="finish" style="display: none;">
+			<div id="finish-container">
+				<h2 id="finish-state">Finished!</h2>
+				<table id="finish-table">
+					<tr>
+						<td>
+							<h3 id="finish-hallmsg">Hall of fame</h3>
+							<div id="finish-ladder"></div>
+						</td>
+						<td><div class="reset-relative">
+							<h3 id="finish-msg"></h3>
+							<i>Your<br>time</i><span id="finish-result" class="finish-lap"></span><div class="finish-lap-sep"></div>
+							<i class="lap1">1st<br>lap</i><span id="finish-lap1" class="finish-lap"></span><div class="finish-lap-sep"></div>
+							<i class="lap2">2nd<br>lap</i><span id="finish-lap2" class="finish-lap"></span><div class="finish-lap-sep"></div>
+							<i class="lap3">3rd<br>lap</i><span id="finish-lap3" class="finish-lap"></span><div class="finish-lap-sep"></div>
+							<p class="difficulty">Difficulty: <b id="finish-diff"></b></p>
+						</div></td>
+						<td>
+							<h3>Share your time</h3>
+							<ul>
+								<li><a id="finish-twitter" href="http://twitter.com/share?text=http%3A%2F%2Fhexgl.bkcore.com" target="_blank">Share it on Twitter</a></li>
+
+								<li><a id="finish-fb" class="fb-send" href="https://www.facebook.com/sharer/sharer.php?u=http://hexgl.bkcore.com/" target="_blank">Share it on Facebook</a></li>
+							</ul>
+							<h3 id="lowfps-msg"></h3>
+						</td>
+					</tr>
+				</table>
+				<div class="sublinks">
+					<a id="quit" href="http://hexgl.bkcore.com/" class="preset-btntext ns">
+						Quit
+					</a>
+					<a id="restart" onclick="hexGL.restart();" class="preset-btntext ns green">
+						Restart
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="overlay"></div>
+		<div id="main"></div>
+
+		<script src="js/hexgl-bundle.js?build=20120830B"></script>
+
+		<script>
+			var container, hudcontainer, hexGL, preloader, pcontainer, quality = 2, difficulty = 0, player = "Anonym", 
+			hasLS = "undefined" !== typeof Storage, cbhalf = document.getElementById("cbhalf");
+			function setQuality(a)
+			{
+				bkcore.Utils.updateClass("preset-q" + quality, "active", !1);
+				quality = a;
+				bkcore.Utils.updateClass("preset-q" + quality, "active", !0)
+			}
+			function init()
+			{
+				var a = window.innerWidth, b = window.innerHeight;
+				hudcontainer = document.getElementById("overlay");
+				container = document.getElementById("main");
+				pcontainer = document.getElementById("preloader");
+				preloader = new bkcore.ThreePreloader({
+					width : a, height : b, container : pcontainer
+				});
+				hexGL = new bkcore.HexGL(
+				{
+					document : document, width : a, height : b, container : container, overlay : hudcontainer, quality : quality, 
+					difficulty : difficulty, player : player, half : cbhalf && !!cbhalf.checked
+				});
+				hexGL.load(
+				{
+					onLoad : function ()
+					{
+						hexGL.init();
+						hexGL.start();
+						preloader.remove()
+					},
+					onError : function (a)
+					{
+						console.log("ERROR ON " + a + ".")
+					},
+					onProgress : function (a)
+					{
+						preloader.ratio = a.loaded / a.total;
+					}
+				})
+			}
+			function beta(a)
+			{
+				difficulty = a;
+				player = document.getElementById("playername").value;
+				"" == player || void 0 == player ? alert("Please enter a player name.") : (hasLS && (localStorage.playername = player), 
+				document.body.style.overflow = "hidden", document.getElementById("beta").innerHTML = "", setTimeout(function ()
+				{
+					init()
+				}, 500))
+			}
+			function restrictCharacters(a, b)
+			{
+				b || (b = window.event);
+				b.keyCode ? code = b.keyCode : b.which && (code = b.which);
+				return String.fromCharCode(code).match(/[A-Za-z]/g) ?!0 :!1
+			}
+			var p = document.getElementById("playername");
+			p.onkeypress = function (a)
+			{
+				return restrictCharacters(this, a);
+			};
+			hasLS && void 0 != localStorage.playername && (p.value = localStorage.playername);
+			bkcore.Ladder.load(function ()
+			{
+				bkcore.Ladder.displayLadder("ladder-cityscape-casual", "cityscape", "casual");
+				bkcore.Ladder.displayLadder("ladder-cityscape-hard", "cityscape", "hard")
+			});
+			if (!Detector.webgl)
+			{
+				var d = document.getElementById("detector-play");
+				d.innerHTML = '<div id="detector-error">' + (window.WebGLRenderingContext ? 'Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.<br />\nFind out how to get it <a href="http://get.webgl.org/">here</a>.' : 'Your browser does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.<br/>\nFind out how to get it <a href="http://get.webgl.org/">here</a>.') + "</div>";
+			};
+		</script>
+	</body>
+</html>
