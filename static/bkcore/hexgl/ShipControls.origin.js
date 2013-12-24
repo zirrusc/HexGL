@@ -20,13 +20,7 @@ bkcore.hexgl.ShipControls = function(domElement)
 
 	this.epsilon = 0.00000001;
 	this.zero = new THREE.Vector3(0,0,0);
-	/* modified
-	 * 2013-12-24
-	 * zirrusc
-	 */
-	// this.airResist = 0.02;
-	this.airResist = 0.002;
-	
+	this.airResist = 0.02;
 	this.airDrift = 0.1;
 	this.thrust = 0.02;
 	this.airBrake = 0.02;
@@ -222,15 +216,6 @@ bkcore.hexgl.ShipControls.prototype.update = function(dt)
 		this.speed += this.thrust * dt;
 	else
 		this.speed -= this.airResist * dt;
-		
-	/* added
-	 * 2013/12/24
-	 * zirrusc
-	 * brake implementation
-	 */
-	if (this.key.backward)
-		this.speed -= this.thrust * dt;
-	
 	if(this.key.left)
 	{
 		angularAmount += this.angularSpeed * dt;

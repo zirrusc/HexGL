@@ -75,7 +75,6 @@ canvas { pointer-events:none; }
 
 #header
 {
-	height: 474px;
 	width: 960px;
 	margin: 0 auto;
 	/* background: url("images/html5.png") no-repeat top center; */
@@ -187,6 +186,12 @@ h1, h2, h3, h4, h5, h6
 .preset-index
 {
 	color: #e95531;
+}
+
+.preset-table
+{
+	margin-top: 20px;
+	padding-top: 20px;
 }
 
 .preset-table, 
@@ -654,10 +659,10 @@ h1, h2, h3, h4, h5, h6
 
 #video
 {
-	margin: 0;
-	padding: 0;
+	padding: 40px 0 0 0;
 	width: 476px;
 	height: 280px;
+	top: -50px;
 }
 
 *, *:before, *:after {

@@ -3,55 +3,39 @@
 	<head>
 		<title>Mobile Driver</title>
 		<meta charset="utf-8">
-		<!--<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">-->
 		<link rel="icon" href="http://hexgl.bkcore.com/favicon.png" type="image/png">
 		<link rel="shortcut icon" href="http://hexgl.bkcore.com/favicon.png" type="image/png">
 		<link rel='stylesheet' href='bootstrap-3.0.3/css/bootstrap.min.css' type='text/css'>
 		<link rel="stylesheet" href="css/fonts.css" type="text/css" charset="utf-8">
-		<link rel="stylesheet" href="css/main.css?build=20120830B" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="css/index.css" type="text/css" charset="utf-8">
 	</head>
 
 	<body>
-	<div id="fb-root"></div>
 		<div id="beta">
 			<div id="header" class='jumbotron'>
-				<h1 class="vh product-top">Mobile Driver</h1>
 				<table>
+					<tr>
+						<td>
+							<h1 class="vh product-top">Mobile Driver</h1>
+							
+						</td>
+						<td rowspan="2" id="video" class='.col-xs-6'>
+							<iframe width="476" height="280" src="http://www.youtube.com/embed/se-oorr2zM8?rel=0" frameborder="0" allowfullscreen></iframe>
+						
+						</td>
+					</tr>
 					<tr>
 						<td>
 							<p>
 								<span class='product-name'>Mobile Driver</span> は、HTML5、WebGL、WebSocketの最新テクノロジーを駆使した、モバイルをハンドルにして走行する、WipeoutやF-Zeroシリーズに似たレースゲームです。<a href='http://hexgl.bkcore.com/' target='_blank'>HexGL</a>が元となっています。
 							</p>
 							<a id="play" class='btn btn-primary btn-lg' href='#content'>Play &gt;</a>&nbsp;&nbsp;
-							<a href='/help.html' target='_blank'>HELP</a>&nbsp;<a href='/about.html' target='_blank'>ABOUT</a>
-							
-						</td>
-						<td id="video" class='.col-xs-6'>
-							<iframe width="476" height="280" src="http://www.youtube.com/embed/se-oorr2zM8?rel=0" frameborder="0" allowfullscreen></iframe>
-						
+							<a href='/help.html' target='_blank'>HELP</a>&nbsp;<a href='/about.html' target='_blank'>ABOUT</a>		
 						</td>
 					</tr>
-
 				</table>
-				<!--
-				<div class='row'>
-					<div class='.col-xs-6'>
-						<p>
-							<span class='product-name'>Mobile Driver</span> は、HTML5、WebGL、WebSocketの最新テクノロジーを駆使した、モバイルをハンドルにして走行する、WipeoutやF-Zeroシリーズに似たレースゲームです。<a href='http://hexgl.bkcore.com/' target='_blank'>HexGL</a>が元となっています。
-						</p>
-						<a id="play" class='btn btn-primary btn-lg' onclick="bkcore.Utils.scrollTo('section-play');">Play &gt;</a>&nbsp;&nbsp;
-						<a href='/help.html'>HELP</a>&nbsp;<a href='/about.html'>ABOUT</a>
-						
-					</div>
-					<div id="video" class='.col-xs-6'>
-						<iframe width="476" height="280" src="http://www.youtube.com/embed/se-oorr2zM8?rel=0" frameborder="0" allowfullscreen></iframe>
-					</div>
-
-				</div>
-				-->
 			</div>
 			<div id="content">
-				<!-- <h2 id="section-play" onclick="bkcore.Utils.scrollTo('section-play');">Play HexGL</h2> -->
 				<div class="line" id="detector-play">
 					<table class="preset-table">
 						<tr>
@@ -145,7 +129,7 @@
 											<li><b>F5/Ctrl+R</b>：このページに戻る
 										</ul>
 									</span>
-								</p>
+								</div>
 							</td>
 						</tr>
 						
@@ -155,31 +139,10 @@
 								<i>5</i><span class="big">Get ready to play</span>
 								<span class="small">プレイヤー名を入力し、難易度を選択します</span>
 							</div></td>
-							<!--
-							<td><div class="preset-btn preset-head">
-								<span class="small">
-									<ul><li><b>&uarr;</b> - Forward</li>
-										<li><b>&larr; &rarr;</b> - Steer</li>
-										<li><b>Q/A</b> - Left airbrake</li>
-										<li><b>D/E</b> - right airbrake</li>
-										<li>-</li>
-										<li><b>Esc</b> - Restart race</li>
-										<li><b>F5</b> - Exit to home</li>
-									</ul>
-								</span>
-							</div></td>
-							-->
-							<td><label class="playerlabel" for="playername">プレイヤー名</label>
+							<td><label class="playerlabel" for="playername">プレイヤー名（半角）</label>
 								<span class="playermask">_<i>_</i>_<i>_</i>_<i>_</i></span><input type="text" name="playername" id="playername" value="Player" maxlength="6">
 								<span class="small playersmall">これはランキングに使用します。（未実装）</span>
 							</td>
-							<!--
-							<td colspan='2'><a id="start0" onclick="beta(0);" class="preset-btntext ns green">
-								START<br>( casual mode )
-							</a><a id="start1" onclick="beta(1);" class="preset-btntext ns">
-								START<br>( hard mode )
-							</a></td>
-							-->
 							<td colspan='2'><a id="start0" onclick="beta(0);" class="btn btn-success btn-lg btn-block btn-start">
 								START (casual mode)
 							</a><a id="start1" onclick="beta(1);" class="btn btn-warning btn-lg btn-block btn-start">
@@ -188,7 +151,11 @@
 						</tr>
 					</table>
 				</div>
-
+				<div class="line" id="footer">
+					HexGL &copy; Thibaut Despoulain (BKcore)<br>
+					Mobile Driver &copy; <a href='//zirrusc.net' target='_blank'>zirrusc</a>
+				</div>
+			</div>
 		</div>
 		<div id="preloader"></div>
 		<div id="finish" style="display: none;">
@@ -219,16 +186,6 @@
 						</td>
 					</tr>
 				</table>
-				<!--
-				<div class="sublinks">
-					<a id="quit" href="http://hexgl.bkcore.com/" class="preset-btntext ns">
-						Quit
-					</a>
-					<a id="restart" onclick="hexGL.restart();" class="preset-btntext ns green">
-						Restart
-					</a>
-				</div>
-				-->
 				<div class="sublinks">
 					<a id="restart" onclick="hexGL.restart();" class="btn btn-success btn-lg btn-block">
 						やり直す
@@ -242,8 +199,6 @@
 		<div id="overlay"></div>
 		<div id="main"></div>
 
-		<script src="js/hexgl-bundle.js"></script> 
-		<!--
 		<script src="js/Three.dev.js"></script>
 		<script src="js/ShaderExtras.js"></script>
 		<script src="js/postprocessing/EffectComposer.js"></script>
@@ -258,6 +213,9 @@
 		<script src="bkcore/Timer.js"></script>
 		<script src="bkcore/ImageData.js"></script>
 		<script src="bkcore/Utils.js"></script>
+		<script src="bkcore/Ladder.js"></script>
+		<script src="bkcore/ThreePreloader.js"></script>
+
 
 		<script src="bkcore/threejs/RenderManager.js"></script>
 		<script src="bkcore/threejs/Shaders.js"></script>
@@ -269,84 +227,13 @@
 		<script src="bkcore/hexgl/ShipEffects.js"></script>
 		<script src="bkcore/hexgl/CameraChase.js"></script>
 		<script src="bkcore/hexgl/Gameplay.js"></script>
+
 		<script src="bkcore/hexgl/tracks/Cityscape.js"></script>
-		<script src="bkcore/Ladder.js"></script>
-		<script src="bkcore/ThreePreloader.js"></script>
+
 		<script src="bkcore/hexgl/HexGL.js"></script>
-		-->
-		<script>
-			var container, hudcontainer, hexGL, preloader, pcontainer, quality = 2, difficulty = 0, player = "Anonym", 
-			hasLS = "undefined" !== typeof Storage, cbhalf = document.getElementById("cbhalf");
-			function setQuality(a)
-			{
-				bkcore.Utils.updateClass("preset-q" + quality, "active", !1);
-				quality = a;
-				bkcore.Utils.updateClass("preset-q" + quality, "active", !0)
-			}
-			function init()
-			{
-				var a = window.innerWidth, b = window.innerHeight;
-				hudcontainer = document.getElementById("overlay");
-				container = document.getElementById("main");
-				pcontainer = document.getElementById("preloader");
-				preloader = new bkcore.ThreePreloader({
-					width : a, height : b, container : pcontainer
-				});
-				hexGL = new bkcore.HexGL(
-				{
-					document : document, width : a, height : b, container : container, overlay : hudcontainer, quality : quality, 
-					difficulty : difficulty, player : player, half : cbhalf && !!cbhalf.checked
-				});
-				hexGL.load(
-				{
-					onLoad : function ()
-					{
-						hexGL.init();
-						hexGL.start();
-						preloader.remove()
-					},
-					onError : function (a)
-					{
-						console.log("ERROR ON " + a + ".")
-					},
-					onProgress : function (a)
-					{
-						preloader.ratio = a.loaded / a.total;
-					}
-				})
-			}
-			function beta(a)
-			{
-				difficulty = a;
-				player = document.getElementById("playername").value;
-				"" == player || void 0 == player ? alert("Please enter a player name.") : (hasLS && (localStorage.playername = player), 
-				document.body.style.overflow = "hidden", document.getElementById("beta").innerHTML = "", setTimeout(function ()
-				{
-					init()
-				}, 500))
-			}
-			function restrictCharacters(a, b)
-			{
-				b || (b = window.event);
-				b.keyCode ? code = b.keyCode : b.which && (code = b.which);
-				return String.fromCharCode(code).match(/[A-Za-z]/g) ?!0 :!1
-			}
-			var p = document.getElementById("playername");
-			p.onkeypress = function (a)
-			{
-				return restrictCharacters(this, a);
-			};
-			hasLS && void 0 != localStorage.playername && (p.value = localStorage.playername);
-			bkcore.Ladder.load(function ()
-			{
-				bkcore.Ladder.displayLadder("ladder-cityscape-casual", "cityscape", "casual");
-				bkcore.Ladder.displayLadder("ladder-cityscape-hard", "cityscape", "hard")
-			});
-			if (!Detector.webgl)
-			{
-				var d = document.getElementById("detector-play");
-				d.innerHTML = '<div id="detector-error">' + (window.WebGLRenderingContext ? 'Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.<br />\nFind out how to get it <a href="http://get.webgl.org/">here</a>.' : 'Your browser does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.<br/>\nFind out how to get it <a href="http://get.webgl.org/">here</a>.') + "</div>";
-			};
-		</script>
+		
+		<!-- <script src="js/hexgl-bundle.js"></script> -->
+		<script src='js/hexgl-main.js'></script>
+		<script src='js/socket.js'></script>
 	</body>
 </html>
