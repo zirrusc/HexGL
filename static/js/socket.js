@@ -74,6 +74,9 @@ $(function() {
 	
 	$('#pinbox-status-sign').html("<div class='glyphicon glyphicon-refresh'></div>");
 	$('#pinbox-status-text').text("通信中");
+	$('#mc-mobile-url').text(location.href
+		.replace('pc.html', '')
+		.replace('#content', ''));
 	/*
 	$('#top-bar-toggle-mobile-enabled').click(function () { 
 		mobile_enabled = !mobile_enabled; 

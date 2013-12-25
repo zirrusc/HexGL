@@ -68,6 +68,6 @@ bkcore.Ladder.load(function ()
 if (!Detector.webgl)
 {
 	var d = document.getElementById("detector-play");
-	d.innerHTML = '<div id="detector-error">' + (window.WebGLRenderingContext ? 'お使いのグラフィックスカードは<a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>がサポートされていないようです。どのように取得すればよいかは、<a href="http://get.webgl.org/">ここ</a>をご覧ください。<br>Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.<br />\nFind out how to get it <a href="http://get.webgl.org/">here</a>.' : 
+	d.innerHTML = '<div id="detector-error">' + (window.WebGLRenderingContext ? 'お使いのグラフィックスカードは<a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>がサポートされていないようです。<a href="http://get.webgl.org/">ここ</a>をご覧ください。<br>Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.<br />\nFind out how to get it <a href="http://get.webgl.org/">here</a>.' : 
 	'お使いのブラウザは<a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>がサポートされていないようです。<a href="http://get.webgl.org/">ここ</a>でサポートされているブラウザを見つけてください。<br>Your browser does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation">WebGL</a>.<br/>\nFind out how to get it <a href="http://get.webgl.org/">here</a>.') + "</div>";
 };

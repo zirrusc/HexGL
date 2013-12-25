@@ -233,10 +233,15 @@ bkcore.hexgl.HexGL.prototype.displayScore = function(f, l)
 		+'&p[url]='+encodeURIComponent('http://hexgl.bkcore.com')
 		+'&p[images][0]='+encodeURIComponent('http://hexgl.bkcore.com/image.png'));
 
-	bkcore.hexgl.Ladder.displayLadder('finish-ladder', t, d, 8);
+	/* Modified
+	 * 2013-12-25
+	 * zirrusc
+	 * from bkcore.hexgl.Ladder.displayLadder
+	 */
+	bkcore.Ladder.displayLadder('finish-ladder', t, d, 8);
 
 	if(this.manager.get('game').objects.lowFPS >= 999)
-		sl != undefined && (sl.innerHTML = 'Note: Your framerate was pretty low, you should try a lesser graphic setting!');
+		sl != undefined && (sl.innerHTML = 'アドバイス：フレームレートがかなり低下していました。画質を落としてみてください。<br>Note: Your framerate was pretty low, you should try a lesser graphic setting!');
 	else
 		sl != undefined && (sl.innerHTML = '');
 
