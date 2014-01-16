@@ -53,19 +53,6 @@ function getArgs()
 function initSocket() {
 	socket = io.connect();
 	
-	function addMessage(msg, pseudo) {
-		$("#chatEntries").append('<div class="message"><p>' + pseudo + ' : ' + msg + '</p></div>');
-	}
-	
-	function sentMessage() {
-		if ($('#messageInput').val() != "") 
-		{
-			socket.emit('message', $('#messageInput').val());
-			addMessage($('#messageInput').val(), "Me", new Date().toISOString(), true);
-			$('#messageInput').val('');
-		}
-	}
-	
 	socket.on('added_room_mobile' + id, function (data) {
 		console.log('received', data);
 		roomid = data['roomid'];
@@ -81,11 +68,6 @@ function initSocket() {
 		// 回避策: ブラウザの更新
 		location.href = '/mobile.html?invalid_pin=1';
 	});
-	
-	socket.on('message', function(data) {
-		addMessage(data['message'], data['pseudo']);
-	});
-
 }
 
 function clickedPinButton() {
@@ -127,7 +109,6 @@ function preventTouchEvents() {
 				ca: event.webkitCompassAccuracy,
 				e: "window.ondeviceorientation"
 			});
-			addMessage("ondeviceorientation: x=" + event.alpha + ", y=" + event.beta + ", z=" + event.gamma + ", ch=" + event.webkitCompassHeading + ", ca=" + event.webkitCompassAccuracy);
 		}
 	}
 }

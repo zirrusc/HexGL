@@ -11,8 +11,11 @@ var mobile = mobile || {};
 mobile.Direction = 0.0;
 mobile.Forward = 0.0;
 
+mobile.MaxDirection = 0.02;
 mobile.DirectionXFactor = 1.0 / 100000.0;
 mobile.DirectionYFactor = 1.0 / 3000.0;
+
+mobile.MaxForward = 0.2;
 mobile.ForwardFactor = 1.0 / 2000.0;
 mobile.ForwardNeutral = 60.0
 
@@ -28,18 +31,18 @@ mobile.ReportOrientation = function (data) {
 		var directionY = -data['y'] * this.DirectionYFactor;
 		//var directionY = 0;
 		this.Direction = directionX + directionY;
-		if (this.Direction < -0.005)
-			this.Direction = -0.005;
-		if (this.Direction >  0.005)
-			this.Direction =  0.005;
+		if (this.Direction < -this.MaxDirection)
+			this.Direction = -this.MaxDirection;
+		if (this.Direction >  this.MaxDirection)
+			this.Direction =  this.MaxDirection;
 		
 		
 		// 受話・送話口の直線を軸としたときの回転による加速度変更
 		this.Forward = (data['z'] + this.ForwardNeutral) * this.ForwardFactor;
 		if (this.Forward < 0.0)
 			this.Forward = 0.0;
-		if (this.Forward > 0.02) // bkcore.hexgl.ShipControls.thrust
-			this.Forward = 0.02;
+		if (this.Forward > this.MaxForward) // bkcore.hexgl.ShipControls.thrust
+			this.Forward = this.MaxForward;
 			
 	} else {
 		console.log("mobile.ReportOrientation got unknown arguments: data['e'] = ", data['e']);
