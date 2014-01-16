@@ -40,9 +40,14 @@ bkcore.hexgl.ShipControls = function(domElement)
 	this.repulsionLerp = 0.1;
 	this.collisionSpeedDecrease = 0.8;
 	this.collisionSpeedDecreaseCoef = 0.8;
-	this.maxShield = 1.0;
+	// this.maxShield = 1.0;
+	this.maxShield = 5.0;
 	this.shieldDelay = 60;
 	this.shieldTiming = 0;
+	/*
+	 *
+	 */
+	//this.shieldDamage = 0.05;
 	this.shieldDamage = 0.25;
 	this.driftLerp = 0.35;
 	this.angularLerp = 0.35;
@@ -267,6 +272,19 @@ bkcore.hexgl.ShipControls.prototype.update = function(dt)
 			this.movement.z += this.speed * this.drift * dt;
 		rollAmount += this.rollAngle * 0.7;
 	}
+	
+	/* Mobile Orientation
+	 *
+	 */
+	//console.log("mobile.Direction = " + mobile.Direction + ", mobile.Forward = " + mobile.Forward);
+	
+	angularAmount += mobile.Direction * dt;
+	mobile.Direction = 0.0;
+	
+	this.speed += mobile.Forward * dt;
+	mobile.Forward = 0.0;
+	
+	
 
 	this.angular += (angularAmount - this.angular) * this.angularLerp;
 	this.rotation.y = this.angular;

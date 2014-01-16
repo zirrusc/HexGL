@@ -1,4 +1,4 @@
-var port = process.argv[2];
+var port = process.argv[2] == undefined ? 80 : process.argv[2];
 
 // express
 var express = require('express');
@@ -31,7 +31,8 @@ io.sockets.on('connection', function (socket) {
 	
 	// PCをRoomに登録
 	socket.on('add_room_pc', function (data) {
-		var roomid = String(Math.floor(Math.random() * 1000000));
+		//var roomid = String(Math.floor(Math.random() * 1000000));
+		var roomid = ("000000" + Math.floor(Math.random() * 1000000)).slice(-6);
 		socket.join(roomid);
 		
 		var data = { roomid: roomid, id: data.id };

@@ -3,6 +3,50 @@ var roomid;
 var mobile_enabled = true;
 var mobile_clients = [];
 
+/* 
+ * Report Mobile Orientations
+ */
+var mobile = mobile || {};
+
+mobile.Direction = 0.0;
+mobile.Forward = 0.0;
+
+mobile.DirectionXFactor = 1.0 / 100000.0;
+mobile.DirectionYFactor = 1.0 / 3000.0;
+mobile.ForwardFactor = 1.0 / 2000.0;
+mobile.ForwardNeutral = 60.0
+
+mobile.ReportOrientation = function (data) {
+	//console.log("this.ReportOrientation: arguments: ", data);
+	//console.log("z=", data['z']);
+	if (data['e'] == "window.ondeviceorientation") {
+	
+		// 受話・送話口の上下による方向変更
+		//var directionX = data['x'] * this.DirectionXFactor;
+		var directionX = 0;
+		// 水平方向の回転による方向変更
+		var directionY = -data['y'] * this.DirectionYFactor;
+		//var directionY = 0;
+		this.Direction = directionX + directionY;
+		if (this.Direction < -0.005)
+			this.Direction = -0.005;
+		if (this.Direction >  0.005)
+			this.Direction =  0.005;
+		
+		
+		// 受話・送話口の直線を軸としたときの回転による加速度変更
+		this.Forward = (data['z'] + this.ForwardNeutral) * this.ForwardFactor;
+		if (this.Forward < 0.0)
+			this.Forward = 0.0;
+		if (this.Forward > 0.02) // bkcore.hexgl.ShipControls.thrust
+			this.Forward = 0.02;
+			
+	} else {
+		console.log("mobile.ReportOrientation got unknown arguments: data['e'] = ", data['e']);
+	}
+};
+
+
 $(function() {
 	/* socket.io */
 	
@@ -62,7 +106,7 @@ $(function() {
 			controlSampleCube.rotation.x = data['y'] * Math.PI / 180;
 			controlSampleCube.rotation.z = -data['z'] * Math.PI / 180;
 			 */
-			
+			mobile.ReportOrientation(data);
 		}
 	});
 	

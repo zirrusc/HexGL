@@ -27,6 +27,10 @@ h1
 	color: #0093d8	; 
 }
 
+.addition
+{
+	font-size: 5px !important;
+}
 
 a { color:skyblue }
 canvas { pointer-events:none; }
@@ -773,4 +777,9 @@ iframe{ width:100%; }
 
 .glyphicon {
 	font-size: 24px;
+}
+
+#mc-mobile-url {
+	font-family: "Consolas", "mono";
+	font-weight: bold;
 }
