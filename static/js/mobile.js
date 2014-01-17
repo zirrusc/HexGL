@@ -29,7 +29,7 @@ $(function() {
 
 	}
 	  
-	$('#pinBoxOk').mousedown(clickedPinButton);
+	$('#pinBoxOk').bind("touchend", clickedPinButton);
 	$('#pinBox').modal('show');
 	$('#pinBoxValue').text('');
 	$('#pinBoxValue').focus();
@@ -56,11 +56,33 @@ function initSocket() {
 	socket.on('added_room_mobile' + id, function (data) {
 		console.log('received', data);
 		roomid = data['roomid'];
-		addMessage("received: added_room_mobile, roomid=" + roomid, 'server');
 		$('#pinBox').hide();
 		
 		authoricated = true;
 		// UNDONE
+		
+		$(".modal-backdrop").remove();
+		
+		$('#handle').width = window.innerWidth;
+		$('#handle').height = window.innerHeight;
+		
+		$('canvas').drawRect({
+			fillStyle: '#000',
+			x: 0, y: 0,
+			width: 200000,
+			height: 100000
+		});
+		
+		$('#handle').drawText({
+			fillStyle: '#9cf',
+			strokeStyle: '#25a',
+			strokeWidth: 2,
+			x: 150, y: 100,
+			fontSize: 48,
+			fontFamily: 'Verdana, sans-serif',
+			text: 'Hello'
+		});
+				
 	});
 	
 	socket.on('failed_add_room_mobile' + id, function (data) {
@@ -71,30 +93,21 @@ function initSocket() {
 }
 
 function clickedPinButton() {
+	var val = $("#pinBoxValue").val().replace(' ', '');
 	if (ready) {
-		socket.emit('add_room_mobile', { id: id, roomid: $("#pinBoxValue").val().replace(' ', '') } );
+		socket.emit('add_room_mobile', { id: id, roomid: val } );
 	}
 }
 
 function preventTouchEvents() {
-	// スクロールを抑止する関数
 	function preventScroll(event) {
-
-	  // li要素だけは、タップイベントに反応したいので、抑止しない。
-	  if (event.touches[0].target.tagName.toLowerCase() == "li") {return;}
-
-	  // preventDefaultでブラウザ標準動作を抑止する。
-	  event.preventDefault();
+		event.preventDefault();
 	}
 
-	// タッチイベントの初期化
-	//document.addEventListener("touchstart", preventScroll, false);
-	document.addEventListener("touchmove", preventScroll, false);
-	//document.addEventListener("touchend", preventScroll, false); 
-	// ジェスチャーイベントの初期化
-	document.addEventListener("gesturestart", preventScroll, false);
-	document.addEventListener("gesturechange", preventScroll, false);
-	document.addEventListener("gestureend", preventScroll, false);
+	$(document).bind("touchmove", preventScroll);
+	$(document).bind("gesturestart", preventScroll);
+	$(document).bind("gesturechange", preventScroll);
+	$(document).bind("gestureend", preventScroll);
 	
 	window.ondeviceorientation = function(event) {
 		if (authoricated) {

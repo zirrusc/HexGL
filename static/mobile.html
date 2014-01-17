@@ -33,7 +33,7 @@
 					<div class="modal-body">
 						<p>PC とモバイルを関連付けます。 PC の Pin を入力してください。</p>
 						<div class="form-group">
-							<label for="pinBoxValue">Pin:</label>
+							<!-- <label for="pinBoxValue">Pin:</label> -->
 							<div id="pinBoxAdvice" hidden="true" class="alert alert-danger"></div>
 							<input id="pinBoxValue" type="tel" value="" autocomplete="off" class="form-control">
 						</div>
@@ -75,13 +75,13 @@
 				</div>
 			</nav>
 			
-			<div id="handle">
-				<img href="handle-mobile.png">
-			</div>
+			<canvas id="handle">
+			</canvas>
 		</div>
-		<script src="/js/jquery-2.0.3.min.js"></script>
-		<script src="/bootstrap-3.0.3/js/bootstrap.min.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
-		<script src="/js/mobile.js"></script>
+		<script src="js/jquery-2.0.3.min.js"></script>
+		<script src="js/jcanvas.min.js"></script>
+		<script src="bootstrap-3.0.3/js/bootstrap.min.js"></script>
+		<script src="socket.io/socket.io.js"></script>
+		<script src="js/mobile.js"></script>
 	</body>
 </html>
