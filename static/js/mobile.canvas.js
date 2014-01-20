@@ -74,8 +74,21 @@ function fSpinText (ctx, x, y, fsz, rad, chr) {
 	//回転する。
 	ctx.rotate (rad);
 	//文字を描画する。
-	ctx.fillText (chr, -(hfsz), -(hfsz));
+	
+	//ctx.fillText (chr, -(hfsz), -(hfsz));
+	fillTextLine(chr, -hfsz, -hfsz);
+	
+	ctx.setTransform(1, 0, 0, 1, 0, 0);
+	ctx.translate(-(x+hfsz), -(y+hfsz));
 } //[[ fSpinText.
+
+var fillTextLine = function(text, x, y) {
+  var textList = text.split('\n');
+  var lineHeight = ctx.measureText("あ").width;
+  textList.forEach(function(text, i) {
+    ctx.fillText(text, x, y+(lineHeight * 1.5)*i);
+  });
+};
 
 // ロード時
 function initCanvas() {
@@ -86,6 +99,8 @@ function initCanvas() {
 	canvas = document.createElement('canvas');
 	canvas.width = canvasWidth;
 	canvas.height = canvasHeight;
+	canvas.addEventListener("touchstart", canvasTouchStart, false);
+	canvas.addEventListener("touchend", canvasTouchEnd, false);
 	document.body.appendChild(canvas);
 
 	// Canvas 要素のリサイズ
@@ -94,9 +109,28 @@ function initCanvas() {
 	ctx = canvas.getContext('2d');
 
 	// メインループ
-	setInterval(loopCanvas, 1000 / 1);
-	//loopCanvas();
+	//setInterval(loopCanvas, 1000 / 30);
+	loopCanvas();
 };
+
+function canvasTouchStart() {
+	//console.log('report_motion');
+	socket.emit("report_motion", {
+		id: id,
+		roomid: roomid,
+		e: "canvas.touchstart"
+	});
+}
+
+
+function canvasTouchEnd() {
+	//console.log('report_motion');
+	socket.emit("report_motion", {
+		id: id,
+		roomid: roomid,
+		e: "canvas.touchend"
+	});
+}
 
 function loopCanvas() {
 	if (updateCanvas())
@@ -135,9 +169,12 @@ function drawCanvas() {
 	waitingLandscape = true;
 	*/
 	ctx.fillStyle = 'black';
-	ctx.font = "50px sans-serif";
+	ctx.font = "60px sans-serif";
 	ctx.textAlign = "center";
-	fSpinText(ctx, canvasWidth / 4 * 3, canvasHeight / 2, 60, 90 * Math.PI / 180, "この部分を上にして持ちます");
+	fSpinText(ctx, canvasWidth / 4 * 3, canvasHeight / 2, 60, 90 * Math.PI / 180, "画面縦向きロックを有効にして、\nこの部分を上にして持ちます\n\n画面をタップし続けて前進、\nモバイルを左右に傾けて操作します");
+	
+	////////
+
 	
 }
 

@@ -276,7 +276,7 @@ bkcore.hexgl.ShipControls.prototype.update = function(dt)
 	/* Mobile Orientation
 	 *
 	 */
-	console.log("mobile.Direction = " + mobile.Direction + ", mobile.Forward = " + mobile.Forward);
+	//console.log("mobile.Direction = " + mobile.Direction + ", mobile.Forward = " + mobile.Forward);
 	if (mobile.Direction != 0.0) {
 		angularAmount += mobile.Direction * dt;
 		rollAmount += -this.rollAngle * mobile.Direction / this.angularSpeed;

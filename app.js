@@ -85,6 +85,5 @@ io.sockets.on('connection', function (socket) {
 	};
 	
 	emit_room('report_motion');
-	emit_room('report_touch');	
 });
 
