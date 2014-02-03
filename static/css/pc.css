@@ -29,7 +29,13 @@ h1
 
 .addition
 {
-	font-size: 5px !important;
+	font-size: 60% !important;
+	line-height: 1.5em !important;
+}
+
+.addition td
+{
+	padding-right: 10px;
 }
 
 a { color:skyblue }

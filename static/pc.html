@@ -26,7 +26,7 @@
 				<div class='row'>
 					<div class='col-md-6'>
 						<p>
-							<span class='product-name'>Mobile Driver</span> は、HTML5、WebGL、WebSocketの最新テクノロジーを駆使した、モバイルをハンドルにして走行する、WipeoutやF-Zeroシリーズに似たレースゲームです。<a href='http://hexgl.js/bkcore.com/' target='_blank'>HexGL</a>が元となっています。
+							<span class='product-name'>Mobile Driver</span> は、HTML5、WebGL、WebSocketの最新テクノロジーを駆使した、モバイルをハンドルにして走行する、WipeoutやF-Zeroシリーズに似たレースゲームです。<a href='http://hexgl.bkcore.com/' target='_blank'>HexGL</a>が元となっています。
 						</p>
 						<a id="play" class='btn btn-primary btn-lg' href='#content'>Play &gt;</a>&nbsp;&nbsp;
 						<a href='/help.html' target='_blank'>HELP</a>&nbsp;<a href='/about.html' target='_blank'>ABOUT</a>		
@@ -41,20 +41,31 @@
 					</div>
 					<div class='col-md-6'>
 						<p>
-							スマートフォンに付属している傾きセンサーなどを利用して、あたかも乗っているかのように操縦することができます。
+							iPhoneなどのスマートフォンに付属している傾きセンサーなどを利用して、あたかも乗っているかのように操縦することができます。
 							最新の国際規格であるWebSocket通信で、傾きセンサーなどのデータをリアルタイムで送受信します。
 						</p>
 						<p>
 							ユーザーはスマートフォンをPCにUSB接続する必要も、プラグインをインストールする必要もありません。
 							スマートフォンのブラウザからアクセスして、PINを入力するだけで搭乗完了です。
 						</p>
-						<p class='addition'>
-							※Node.jsのsocket.ioを使用して通信するため、WebSocketがサポートされていないブラウザでもAJAX long pollingなどを利用して通信できます。しかし、ラグが発生するため、WebSocketをサポートしたブラウザでプレイすることを強くおすすめします。<br>
-							※WebGLがサポートされていないPCブラウザはプレイできません。<br>
-							※スマートフォンで操縦する場合は、傾きセンサー、加速度センサー、地磁気センサーが組み込まれている必要があります。<br>
+						<div class='addition'>
+							推奨環境
+							<table class='addition'>
+								<tr>
+									<td>PC</td>
+									<td>WebGL<br>WebSocket</td>
+									<td>Google Chrome 16以降<br>Mozilla Firefox 11以降<br>Microsoft Internet Explorer 11以降</td>
+								</tr>
+								<tr>
+									<td>モバイル</td>
+									<td>WebSocket<br>傾きセンサー<br>加速度センサー<br>地磁気センサー</td>
+									<td>iOS 4.2以降</td>
+								</tr>
+							</table>
+							※Node.jsのsocket.ioを使用して通信するため、WebSocketがサポートされていないブラウザでもAJAX long pollingなどを利用して通信できます。しかし、通信ラグが発生するため、WebSocketをサポートしたブラウザでプレイすることを強くおすすめします。<br>
 							※画像はWiiハンドルではありません。
 							
-						</p>
+						</div>
 					</div>
 				</div>
 			</div>
