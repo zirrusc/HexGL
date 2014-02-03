@@ -54,11 +54,12 @@ mobile.ReportOrientation = function (data) {
 	}
 };
 
+var socket;
 
 $(function() {
 	/* socket.io */
 	
-	var socket = io.connect();
+	socket = io.connect();
 	/*
 	function addMessage(msg, pseudo) {
 		$("#chatEntries").append('<div class="message"><p>' + pseudo + ' : ' + msg + '</p></div>');
@@ -144,5 +145,15 @@ $(function() {
 	});
 	 */
 	/* end of socket.io */
+
+
 	
 });
+
+
+var start_game = function (arg) {
+	console.log('START');
+	socket.emit('start', { id: id, roomid: roomid, mode: arg });
+	beta(arg);
+	
+};

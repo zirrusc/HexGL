@@ -11,7 +11,7 @@ var supportsTouchend = false;
 var base_x = 0;
 var last_orientation_event;
 
-
+var started = false;
 
 function hashArgs()
 {
@@ -50,6 +50,11 @@ function initSocket() {
 		// bug: この場所で表示をしようとすると背景色が加算されてしまう
 		// 回避策: ブラウザの更新
 		location.href = '/mobile.html?invalid_pin=1';
+	});
+	
+	socket.on('start', function (data) {
+		console.log('STARTED');
+		started = true;
 	});
 	
 	socket.on('ping', function (data) {
@@ -93,6 +98,7 @@ function preventTouchEvents() {
 function reportMotion() {
 	if (authoricated) {
 		last_orientation_event = event;
+		/*
 		socket.emit("report_motion", {
 			id: id,
 			roomid: roomid,
@@ -102,9 +108,44 @@ function reportMotion() {
 			ch: event.webkitCompassHeading,
 			ca: event.webkitCompassAccuracy,
 			e: "window.ondeviceorientation"
-		});
+		});*/
+		reportMotionBase(event.alpha - base_x,
+						 event.beta,
+						 event.gamma,
+						 event.webkitCompassHeading,
+						 event.webkitCompassAccuracy,
+						 "window.ondeviceorientation");
 	}
 	
+
+}
+
+var mx, my, mz, mch, mca, me;
+
+function reportMotionLast() {
+	reportMotionBase(mx, my, mz, mch, mca, me);
+}
+
+function reportMotionBase(x, y, z, ch, ca, e) {
+	if (authoricated) {
+		mx = x;
+		my = y;
+		mz = z;
+		mch = ch;
+		mca = ca;
+		me = e;
+		socket.emit("report_motion", {
+			id: id,
+			roomid: roomid,
+			x: x,
+			y: y,
+			z: z,
+			ch: ch,
+			ca: ca,
+			e: e
+		});
+	}
+
 	if (waitingLandscape) {
 		if (event.gamma > 45 && event.gamma < 45 + 90)
 			landscaped();
