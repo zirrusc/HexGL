@@ -85,5 +85,7 @@ io.sockets.on('connection', function (socket) {
 	};
 	
 	emit_room('report_motion');
+	emit_room('ping');
+	emit_room('ping_return');
 });
 

@@ -104,6 +104,11 @@ $(function() {
 		//changeTopBarText();
 		$('#pinbox-status-sign').html("<div class='glyphicon glyphicon-ok'></div>");
 		$('#pinbox-status-text').text(mobile_clients.length + "台のモバイルと接続しました");
+		
+		// speed test
+		var time = +new Date();
+		console.log(time);
+		socket.emit('ping', { id: id, roomid: roomid, time: time });
 	});
 	
 	socket.on('report_motion', function (data) {
@@ -118,8 +123,11 @@ $(function() {
 		}
 	});
 	
-	socket.on('message', function(data) {
-		addMessage(data['message'], data['pseudo']);
+	socket.on('ping_return', function (data) {
+		console.log(data['time']);
+		var sec = ((+new Date()) - data['time']) / 1000;
+		var s = sec >= 0.2 ? "遅いかもしれません" : "快適に動作できます";
+		$('#pinbox-status-time').text("PC-Mobile間の往復通信時間：" + sec + "秒、" + s);
 	});
 	
 	socket.emit('add_room_pc', { id: id } );

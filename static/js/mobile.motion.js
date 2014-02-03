@@ -51,6 +51,10 @@ function initSocket() {
 		// 回避策: ブラウザの更新
 		location.href = '/mobile.html?invalid_pin=1';
 	});
+	
+	socket.on('ping', function (data) {
+		socket.emit('ping_return', { id: id, roomid: data['roomid'], time: data['time'] });
+	});
 }
 
 
