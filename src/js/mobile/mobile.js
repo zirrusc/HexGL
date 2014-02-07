@@ -36,8 +36,6 @@ $(function() {
 	
 	initSocket();
 	
-	//initCanvas();
-	
 	// UI 
 	
 	window.scrollTo(0,1);

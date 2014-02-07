@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'src')));
 
 var server = http.createServer(app);
 
@@ -29,7 +29,7 @@ io.set('log level', 1);
 io.sockets.on('connection', function (socket) {
 	console.log('sessionID ', socket.handshake.sessionID);
 	
-	// PCをRoomに登録
+	// Register PC into room
 	socket.on('add_room_pc', function (data) {
 		var roomid = ("000000" + Math.floor(Math.random() * 1000000)).slice(-6);
 		socket.join(roomid);
@@ -39,7 +39,7 @@ io.sockets.on('connection', function (socket) {
 		io.sockets.to(roomid).emit('added_room_pc', data);
 	});
 	
-	// モバイルをRoomに登録
+	// Register mobile into room
 	socket.on('add_room_mobile', function (data) {
 		if (data['roomid'] == undefined || data['roomid'] == '') {
 			// data['roomid'] is empty

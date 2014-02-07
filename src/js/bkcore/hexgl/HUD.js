@@ -108,7 +108,7 @@ bkcore.hexgl.HUD.prototype.resetLap = function()
 
 bkcore.hexgl.HUD.prototype.updateTime = function(time)
 {
-	this.time = this.timeSeparators[0] + time.m + this.timeSeparators[1] + time.s + this.timeSeparators[2] + time.ms + this.timeSeparators[3];
+	this.time = this.timeSeparators[0] + ("00" + time.m).slice(-2) + this.timeSeparators[1] + ("00" + time.s).slice(-2) + this.timeSeparators[2] + ("000" + time.ms).slice(-3) + this.timeSeparators[3];
 }
 
 bkcore.hexgl.HUD.prototype.resetTime = function()

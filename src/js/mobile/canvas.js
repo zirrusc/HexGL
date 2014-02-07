@@ -79,7 +79,6 @@ function initCanvas() {
 };
 
 function canvasTouchStart() {
-	//console.log('report_motion');
 	istouch = true;
 	socket.emit("report_motion", {
 		id: id,
@@ -88,9 +87,7 @@ function canvasTouchStart() {
 	});
 }
 
-
 function canvasTouchEnd() {
-	//console.log('report_motion');
 	istouch = false;
 	socket.emit("report_motion", {
 		id: id,
@@ -108,12 +105,6 @@ function loopCanvas() {
 }
 
 function updateCanvas() {
-/*
-	if (istouch)
-		canvasTouchStart();
-	else
-		canvasTouchEnd();
-		*/
 	reportMotionLast();
 	return true;
 }
@@ -137,7 +128,6 @@ function drawCanvas() {
 	}
 	else
 	{
-		//drawn = true;
 		//ctx.drawImage(lookPcImage, 0, 0, canvasWidth, canvasHeight);
 		if (istouch) {
 			drawn = true;

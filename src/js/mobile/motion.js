@@ -66,23 +66,6 @@ function initSocket() {
 function reportMotion() {
 	if (authoricated) {
 		last_orientation_event = event;
-		/*
-		socket.emit("report_motion", {
-			id: id,
-			roomid: roomid,
-			x: event.alpha - base_x,
-			y: event.beta,
-			z: event.gamma,
-			ch: event.webkitCompassHeading,
-			ca: event.webkitCompassAccuracy,
-			e: "window.ondeviceorientation"
-		});*/
-		/*reportMotionBase(event.alpha - base_x,
-						 event.beta,
-						 event.gamma,
-						 event.webkitCompassHeading,
-						 event.webkitCompassAccuracy,
-						 "window.ondeviceorientation"); */
 		reportMotionBase(event, "window.ondeviceorientation");
 	}
 	

@@ -11,7 +11,6 @@ var Detector = {
 	fileapi: window.File && window.FileReader && window.FileList && window.Blob,
 
 	getWebGLErrorMessage: function () {
-
 		var element = document.createElement( 'div' );
 		element.id = 'webgl-error-message';
 		element.style.fontFamily = 'monospace';
@@ -23,7 +22,6 @@ var Detector = {
 		element.style.padding = '1.5em';
 		element.style.width = '400px';
 		element.style.margin = '5em auto 0';
-
 		if ( ! this.webgl ) {
 
 			element.innerHTML = window.WebGLRenderingContext ? [
@@ -33,27 +31,18 @@ var Detector = {
 				'Your browser does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation" style="color:#000">WebGL</a>.<br/>',
 				'Find out how to get it <a href="http://get.webgl.org/" style="color:#000">here</a>.'
 			].join( '\n' );
-
 		}
-
 		return element;
-
 	},
 
 	addGetWebGLMessage: function ( parameters ) {
-
 		var parent, id, element;
-
 		parameters = parameters || {};
-
 		parent = parameters.parent !== undefined ? parameters.parent : document.body;
 		id = parameters.id !== undefined ? parameters.id : 'oldie';
-
 		element = Detector.getWebGLErrorMessage();
 		element.id = id;
-
 		parent.appendChild( element );
-
 	}
 
 };

@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+cd ..
 uglifycss src/css/pc.css > build/css/pc.css
 uglifycss src/css/fonts.css > build/css/fonts.css
 uglifycss src/css/reset.mobile.css > build/css/reset.mobile.css
