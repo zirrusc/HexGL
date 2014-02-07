@@ -102,11 +102,11 @@ function reportMotionBase(event, eventName) {
 		var d = {
 			id: id,
 			roomid: roomid,
-			x: event.alpha - base_x,
+			//x: event.alpha - base_x,
 			y: event.beta,
-			z: event.gamma,
-			ch: event.webkitCompassHeading,
-			ca: event.webkitCompassAccuracy,
+			//z: event.gamma,
+			//ch: event.webkitCompassHeading,
+			//ca: event.webkitCompassAccuracy,
 			e: eventName
 		};
 		if (eventName == 'reportMotionLast')

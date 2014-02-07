@@ -24,8 +24,8 @@ module.exports = (grunt) ->
         files: [
             expand: true,
             cwd: 'src/js/',
-            #src: ['**/*.js']
-            src: ['*.js', 'mobile/*.js'],
+            src: ['**/*.js']
+            #src: ['*.js', 'mobile/*.js'],
             dest: 'build/js/',
             ext: '.js',
 
