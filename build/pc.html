@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<title>Mobile Driver</title>
+		<meta charset="utf-8">
+		<link rel="icon" href="/images/favicon.png" type="image/png">
+		<link rel="shortcut icon" href="/images/favicon.png" type="image/png">
+		<link rel='apple-touch-icon' href='/images/favicon.png'>
+		
+		<link rel='stylesheet' href='bootstrap-3.0.3/css/bootstrap.min.css' type='text/css'>
+		<link rel="stylesheet" href="css/fonts.css" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="css/pc.css" type="text/css" charset="utf-8">
+	</head>
+
+	<body>
+		<div id="beta">
+			<div id="header" class='jumbotron'>
+				<div class='row'>
+					<div class='col-md-8'>
+						<h1 class="vh product-top">Mobile Driver</h1>
+					</div>
+					<div class='col-md-4'>
+						<span id='author' class='float-right'>zirrusc</span>
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-md-6'>
+						<p>
+							<span class='product-name'>Mobile Driver</span> は、HTML5、WebGL、WebSocketの最新テクノロジーを駆使した、モバイルをハンドルにして走行する、WipeoutやF-Zeroシリーズに似たレースゲームです。<a href='http://hexgl.bkcore.com/' target='_blank'>HexGL</a>が元となっています。
+						</p>
+						<a id="play" class='btn btn-primary btn-lg' href='#content'>Play &gt;</a>&nbsp;&nbsp;
+						<a href='/help.html' target='_blank'>HELP</a>&nbsp;<a href='/about.html' target='_blank'>ABOUT</a>		
+					</div>
+					<div class='col-md-6'>
+						<iframe width="420" height="236" src="//www.youtube.com/embed/se-oorr2zM8" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-md-6'>
+						<img src='images/iphone-handle.png' alt='iPhone 5s in Wii Handle' class='img-rounded' height='300px'>
+					</div>
+					<div class='col-md-6'>
+						<p>
+							iPhoneなどのスマートフォンに付属している傾きセンサーなどを利用して、あたかも乗っているかのように操縦することができます。
+							最新の国際規格であるWebSocket通信で、傾きセンサーなどのデータをリアルタイムで送受信します。
+						</p>
+						<p>
+							ユーザーはスマートフォンをPCにUSB接続する必要も、プラグインをインストールする必要もありません。
+							スマートフォンのブラウザからアクセスして、PINを入力するだけで搭乗完了です。
+						</p>
+					</div>
+				</div>
+				<div class='row'>
+					<div class='col-md-6'>
+						<div class='addition'>
+							<p>推奨環境</p>
+							<table class='addition'>
+								<tr>
+									<td>PC</td>
+									<td>WebGL<br>WebSocket</td>
+									<td>Google Chrome 16以降<br>Mozilla Firefox 11以降<br>Microsoft Internet Explorer 11以降</td>
+								</tr>
+								<tr>
+									<td>モバイル</td>
+									<td>WebSocket<br>傾きセンサー<br>加速度センサー<br>地磁気センサー</td>
+									<td>iOS 4.2以降</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class='col-md-6'>
+						<div class='addition'>
+							<p>
+								※Node.jsのsocket.ioを使用して通信するため、WebSocketがサポートされていないブラウザでもAJAX long pollingなどを利用して通信できます。しかし、通信ラグが発生するため、WebSocketをサポートしたブラウザでプレイすることを強くおすすめします。<br>
+								※画像はWiiハンドルではありません。
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="content">
+				<div class="line" id="detector-play">
+					<table class="preset-table">
+						<tr>
+							<td><div class="preset-btn preset-head">
+								<i>1</i><span class="big">SELECT QUALITY</span>
+								<span class="small">このゲームは60FPSで正しく動作します。ラグが発生する場合は画質を落としてみてください。</span>
+							</div></td>
+							<td><a id="preset-q0" onclick="setQuality(0);" class="preset-btn ns">
+								<span class="big">LOW</span>
+								<span class="small">ラップトップ向け<br><input type="checkbox" name="cbhalf" id="cbhalf"><label for="cbhalf">半分の解像度を使用する</label></span>
+							</a></td>
+							<td><a id="preset-q1" onclick="setQuality(1);" class="preset-btn ns active">
+								<span class="big">MAINSTREAM</span>
+								<span class="small">普通のPC向け</span>
+							</a></td>
+							<td><a id="preset-q2" onclick="setQuality(2);" class="preset-btn ns">
+								<span class="big">ULTRA</span>
+								<span class="small">最高品質<br>GT x50, HD x770 and up.</span>
+							</a></td>
+						</tr>
+						<tr>
+							<td><div class="preset-btn preset-head">
+								<i>2</i><span class="big">SELECT TRACK</span>
+								<span class="small">これはベータ版なので、トラックは一つだけです。</span>
+							</div></td>
+							<td><a id="preset-t0" onclick="void(0);" class="preset-btn ns active">
+								<img class="preset-track" src="thumbs/cityscape.png">
+								<span class="big preset-track-title">Cityscape</span>
+							</a></td>
+							<td><a id="preset-t1" onclick="void(0);" class="preset-btn ns disabled">
+								<img class="preset-track" src="thumbs/locked.png">
+								<span class="big preset-track-title">Locked</span>
+							</a></td>
+							<td><a id="preset-t2" onclick="void(0);" class="preset-btn ns disabled">
+								<img class="preset-track" src="thumbs/locked.png">
+								<span class="big preset-track-title">Locked</span>
+							</a></td>
+						</tr>
+						<tr>
+							<td><div class="preset-btn preset-head">
+								<i>3</i><span class="big">SELECT CRAFT</span>
+								<span class="small">これはベータ版なので、クラフトも一つだけです。</span>
+							</div></td>
+							<td><a id="preset-t0" onclick="void(0);" class="preset-btn ns active">
+								<img class="preset-track" src="thumbs/hexmki.png">
+								<span class="big preset-track-title">Hex MKI</span>
+							</a></td>
+							<td><a id="preset-t1" onclick="void(0);" class="preset-btn ns disabled">
+								<img class="preset-track" src="thumbs/lockedc.png">
+								<span class="big preset-track-title">Locked</span>
+							</a></td>
+							<td><a id="preset-t2" onclick="void(0);" class="preset-btn ns disabled">
+								<img class="preset-track" src="thumbs/lockedc.png">
+								<span class="big preset-track-title">Locked</span>
+							</a></td>
+						</tr>
+						
+						<!-- MOBILE CONTROLLER -->
+						<tr>
+							<td>
+								<div class='preset-btn preset-head'>
+									<i>4</i>
+									<span class='big'>MOBILE CONTROLLER</span>
+									<span class='small'>PCとモバイルを関連付けてハンドルにします</span>
+								</div>
+							</td>
+							<td colspan="2">
+								<p>
+									<li><span class='preset-index'>1.</span> モバイルからこのサイト（<span id='mc-mobile-url'></span>）にアクセスする</li>
+									<li><span class='preset-index'>2.</span> 以下の6桁のPINを入力する</li>
+								</p>
+								<div class='pinbox'>
+									<div id='pinbox-value'>
+									</div>
+									<div id='pinbox-status'>
+										<span id='pinbox-status-sign'></span>
+										<span id='pinbox-status-text'></span>
+									</div>
+									<span id='pinbox-status-time'></span>
+								</div>
+								
+							</td>
+							
+							<td>
+								<div class = 'preset-btn preset-head'>
+									<span class='small'>
+										<ul>
+											<li>※ モバイルを使わないでプレイするとき
+											<li><b>↑</b>: 前進
+											<li><b>←→</b>：舵を取る
+											<li><b>Q/A</b>：左エアブレーキ
+											<li><b>D/E</b>：右エアーブレーキ
+											<li><b>Esc</b>：やりなおし
+											<li><b>F5/Ctrl+R</b>：このページに戻る
+										</ul>
+									</span>
+								</div>
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<td><div class="preset-btn preset-head">
+								<i>5</i><span class="big">Get ready to play</span>
+								<span class="small">プレイヤー名を入力し、難易度を選択します</span>
+							</div></td>
+							<td><label class="playerlabel" for="playername">プレイヤー名（半角）</label>
+								<span class="playermask">_<i>_</i>_<i>_</i>_<i>_</i></span><input type="text" name="playername" id="playername" value="Player" maxlength="6">
+								<span class="small playersmall">これはランキングに使用します。（未実装）</span>
+							</td>
+							<td colspan='2'><a id="start0" onclick="start_game(0);" class="btn btn-success btn-lg btn-block btn-start">
+								START (casual mode)
+							</a><a id="start1" onclick="start_game(1);" class="btn btn-warning btn-lg btn-block btn-start">
+								START (hard mode)
+							</a></td>							
+						</tr>
+					</table>
+				</div>
+				<div class="line" id="footer">
+					HexGL &copy; Thibaut Despoulain (BKcore)<br>
+					Mobile Driver &copy; <a href='//zirrusc.net' target='_blank'>zirrusc</a>
+				</div>
+			</div>
+		</div>
+		<div id="preloader"></div>
+		<div id="finish" style="display: none;">
+			<div id="finish-container">
+				<h2 id="finish-state">Finished!</h2>
+				<table id="finish-table">
+					<tr>
+						<td>
+							<h3 id="finish-hallmsg">Hall of fame</h3>
+							<div id="finish-ladder"></div>
+						</td>
+						<td><div class="reset-relative">
+							<h3 id="finish-msg"></h3>
+							<i><br>TIME</i><span id="finish-result" class="finish-lap"></span><div class="finish-lap-sep"></div>
+							<i class="lap1">1st<br>lap</i><span id="finish-lap1" class="finish-lap"></span><div class="finish-lap-sep"></div>
+							<i class="lap2">2nd<br>lap</i><span id="finish-lap2" class="finish-lap"></span><div class="finish-lap-sep"></div>
+							<i class="lap3">3rd<br>lap</i><span id="finish-lap3" class="finish-lap"></span><div class="finish-lap-sep"></div>
+							<p class="difficulty">Difficulty: <b id="finish-diff"></b></p>
+						</div></td>
+						<td>
+							<h3>タイムを共有する</h3>
+							<ul>
+								<li><a id="finish-twitter" href="http://twitter.com/share?text=http%3A%2F%2Fhexgl.js/bkcore.com" target="_blank">Twitterで共有</a></li>
+
+								<li><a id="finish-fb" class="fb-send" href="https://www.facebook.com/sharer/sharer.php?u=http://hexgl.js/bkcore.com/" target="_blank">Facebookで共有</a></li>
+							</ul>
+							<p id="lowfps-msg"></p>
+						</td>
+					</tr>
+				</table>
+				<div class="sublinks">
+					<a id="restart" onclick="hexGL.restart();" class="btn btn-success btn-lg btn-block">
+						やり直す
+					</a>
+					<a id="quit" href="/" class="btn btn-warning btn-lg btn-block">
+						終了
+					</a>
+				</div>		
+			</div>
+		</div>
+		<div id="overlay"></div>
+		<div id="main"></div>
+
+		<script src="/js/lib/Three_dev.js"></script>
+<!-- 		<script src="js/three.min.js"></script> -->
+		<script src="/js/bkcore/ShaderExtras.js"></script>
+		<script src="/js/postprocessing/EffectComposer.js"></script>
+		<script src="/js/postprocessing/RenderPass.js"></script>
+		<script src="/js/postprocessing/BloomPass.js"></script>
+		<script src="/js/postprocessing/ShaderPass.js"></script>
+		<script src="/js/postprocessing/MaskPass.js"></script>
+		<script src="/js/Detector.js"></script>
+		<script src="/js/lib/Stats.js"></script>
+		<script src="/js/lib/dat-gui.js"></script>
+
+		<script src="/js/bkcore/Timer.js"></script>
+		<script src="/js/bkcore/ImageData.js"></script>
+		<script src="/js/bkcore/Utils.js"></script>
+		<script src="/js/bkcore/Ladder.js"></script>
+		<script src="/js/bkcore/ThreePreloader.js"></script>
+ 
+		<script src="/js/bkcore/threejs/RenderManager.js"></script>
+		<script src="/js/bkcore/threejs/Shaders.js"></script>
+		<script src="/js/bkcore/threejs/Particles.js"></script>
+		<script src="/js/bkcore/threejs/Loader.js"></script>
+
+		<script src="/js/bkcore/hexgl/HUD.js"></script>
+		<script src="/js/bkcore/hexgl/ShipControls.js"></script>
+		<script src="/js/bkcore/hexgl/ShipEffects.js"></script>
+		<script src="/js/bkcore/hexgl/CameraChase.js"></script>
+		<script src="/js/bkcore/hexgl/Gameplay.js"></script>
+
+
+		<script src="/js/bkcore/hexgl/tracks/Cityscape.js"></script>
+
+		<script src="/js/bkcore/hexgl/HexGL.js"></script>
+		
+		<!-- <script src="js/bkcore/hexgl-bundle.js"></script> -->
+		<script src='/js/hexgl-main.js'></script>
+		
+		<script src='/js/lib/jquery-2_0_3_min.js'></script>
+		<script>
+			$(window).load(function () {
+				setQuality(1);
+			});
+		</script>
+		<script src='/socket.io/socket.io.js'></script>
+		<script src='/js/motion.js'></script>
+	</body>
+</html>
+

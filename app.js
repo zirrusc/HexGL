@@ -5,7 +5,7 @@ var express = require('express');
 var http = require('http');
 var app = express();
 var path = require('path');
-
+ 
 // all environments
 app.set('port', process.env.PORT || port);
 app.use(express.favicon());
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 var server = http.createServer(app);
 
@@ -31,7 +31,6 @@ io.sockets.on('connection', function (socket) {
 	
 	// PCをRoomに登録
 	socket.on('add_room_pc', function (data) {
-		//var roomid = String(Math.floor(Math.random() * 1000000));
 		var roomid = ("000000" + Math.floor(Math.random() * 1000000)).slice(-6);
 		socket.join(roomid);
 		
