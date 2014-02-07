@@ -36,7 +36,7 @@ mobile.ReportOrientation = function (data) {
 			this.Direction = -this.MaxDirection;
 		if (this.Direction >  this.MaxDirection)
 			this.Direction =  this.MaxDirection;
-		
+		console.log('1');
 		/*
 		// 受話・送話口の直線を軸としたときの回転による加速度変更
 		this.Forward = (data['z'] + this.ForwardNeutral) * this.ForwardFactor;
@@ -47,8 +47,10 @@ mobile.ReportOrientation = function (data) {
 		*/
 	} else if (data['e'] == 'canvas.touchstart') {
 		this.Forward = this.NormalForward;
+		console.log('2');
 	} else if (data['e'] == 'canvas.touchend') {
 		this.Forward = 0;
+		console.log('3');
 	} else if (data['e'] == 'reportMotionLast') {
 		// 受話・送話口の上下による方向変更
 		//var directionX = data['x'] * this.DirectionXFactor;
@@ -67,6 +69,7 @@ mobile.ReportOrientation = function (data) {
 		else if (data['touch'] == false)
 			this.Forward = 0;
 			
+		console.log('4');
 	} else {
 		console.log("mobile.ReportOrientation got unknown arguments: data['e'] = ", data['e']);
 	}

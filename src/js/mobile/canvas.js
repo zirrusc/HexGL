@@ -108,11 +108,12 @@ function loopCanvas() {
 }
 
 function updateCanvas() {
+/*
 	if (istouch)
 		canvasTouchStart();
 	else
 		canvasTouchEnd();
-		
+		*/
 	reportMotionLast();
 	return true;
 }
