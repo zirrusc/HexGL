@@ -130,7 +130,7 @@ function drawCanvas() {
 	// normal draw 
 	var drawn = false;
 
-	if (loopcount < 60) {
+	if (loopcount < 90) {
 		drawn = true;
 		ctx.drawImage(descImage, 0, 0, canvasWidth, canvasHeight);
 	}

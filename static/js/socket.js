@@ -126,9 +126,9 @@ $(function() {
 	
 	socket.on('ping_return', function (data) {
 		console.log(data['time']);
-		var sec = ((+new Date()) - data['time']) / 1000;
-		var s = sec >= 0.2 ? "遅いかもしれません" : "快適に動作できます";
-		$('#pinbox-status-time').text("PC-Mobile間の往復通信時間：" + sec + "秒、" + s);
+		var sec = (((+new Date()) - data['time']) / 1000) / 2;
+		var s = sec >= 0.1 ? "遅いかもしれません" : "快適に動作できます";
+		$('#pinbox-status-time').text("PC-Mobile間の片道通信時間：" + sec + "秒、" + s);
 	});
 	
 	socket.emit('add_room_pc', { id: id } );
