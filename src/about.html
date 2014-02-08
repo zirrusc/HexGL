@@ -6,9 +6,15 @@
 		<meta charset='utf-8'>
 		<link rel='stylesheet' href='bootstrap-3.0.3/css/bootstrap.min.css' type='text/css'>
 	</head>
-	<body>
-		<h1>Mobile Driver Legal Notice</h1>
-		<h2>Mobile Driver<h2>
+	<body id='body'>
+	<div class='row'>
+		<h1 style="
+    margin-left: 20px;
+    padding-left: 20px;
+">Mobile Driver Legal Notice</h1>
+		<div id="index" class='col-xs-4 col-md-2'></div>
+		<div class='col-xs-8 col-md-6'>
+		<h2><a href='/' target='_blank'>Mobile Driver</a></h2>
 		<pre>
 The MIT License (MIT)
 
@@ -1025,8 +1031,85 @@ SUCH DAMAGE.
 		<pre>
 Copyright (C) fmarcia
 UglifyCSS is MIT licensed.</pre>
+		<h2><a href='http://github.com/mrdoob/stats.js' target='_blank'>stats.js</a></h2>
+		<pre>
+The MIT License
+
+Copyright (c) 2009-2012 Mr.doob
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</pre>
+		<h2>Detector.js</h2>
+		<pre>
+/**
+ * @author alteredq / http://alteredqualia.com/
+ * @author mr.doob / http://mrdoob.com/
+ */</pre>
+		<h2><a href='http://calebevans.me/projects/jcanvas/' target='_blank'>jCanvas</a></h2>
+		<pre>
+Copyright 2014 Caleb Evans
+http://calebevans.me/projects/jcanvas/
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</pre>
+		<h2><a href='http://projects.jga.me/toc/' target='_blank'>toc</a></h2>
+		<pre>
+/*!
+ * toc - jQuery Table of Contents Plugin
+ * v0.1.2
+ * http://projects.jga.me/toc/
+ * copyright Greg Allen 2013
+ * MIT License
+*/</pre>		<!--
 		<h2><a href='http:///' target='_blank'></a></h2>
 		<pre>
 		</pre>
+		-->
+		
+		</div>
+		</div>
+		<script src='/js/lib/jquery-2_0_3_min.js'></script>
+		<script>
+		/*!
+		 * toc - jQuery Table of Contents Plugin
+		 * v0.1.2
+		 * http://projects.jga.me/toc/
+		 * copyright Greg Allen 2013
+		 * MIT License
+		*/
+		(function(t){t.fn.toc=function(e){var n,i=this,r=t.extend({},jQuery.fn.toc.defaults,e),o=t(r.container),a=t(r.selectors,o),l=[],h=r.prefix+"-active",s=function(e){if(r.smoothScrolling){e.preventDefault();var n=t(e.target).attr("href"),o=t(n);t("body,html").animate({scrollTop:o.offset().top},400,"swing",function(){location.hash=n})}t("li",i).removeClass(h),t(e.target).parent().addClass(h)},c=function(){n&&clearTimeout(n),n=setTimeout(function(){for(var e,n=t(window).scrollTop(),o=0,a=l.length;a>o;o++)if(l[o]>=n){t("li",i).removeClass(h),e=t("li:eq("+(o-1)+")",i).addClass(h),r.onHighlight(e);break}},50)};return r.highlightOnScroll&&(t(window).bind("scroll",c),c()),this.each(function(){var e=t(this),n=t("<ul/>");a.each(function(i,o){var a=t(o);l.push(a.offset().top-r.highlightOffset),t("<span/>").attr("id",r.anchorName(i,o,r.prefix)).insertBefore(a);var h=t("<a/>").text(r.headerText(i,o,a)).attr("href","#"+r.anchorName(i,o,r.prefix)).bind("click",function(n){s(n),e.trigger("selected",t(this).attr("href"))}),c=t("<li/>").addClass(r.itemClass(i,o,a,r.prefix)).append(h);n.append(c)}),e.html(n)})},jQuery.fn.toc.defaults={container:"body",selectors:"h1,h2,h3",smoothScrolling:!0,prefix:"toc",onHighlight:function(){},highlightOnScroll:!0,highlightOffset:100,anchorName:function(t,e,n){return n+t},headerText:function(t,e,n){return n.text()},itemClass:function(t,e,n,i){return i+"-"+n[0].tagName.toLowerCase()}}})(jQuery);
+		$("#index").toc();
+		</script>
 	</body>
 </html>
