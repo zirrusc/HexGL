@@ -118,7 +118,7 @@ function drawCanvas() {
 	ctx.moveTo(0, 0);
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	
-	ctx.fillStyle = 'white';
+	ctx.fillStyle = 'black';
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 	
 	// normal draw 
@@ -127,13 +127,13 @@ function drawCanvas() {
 	if (page == 0) {
 		drawn = true;
 		ctx.drawImage(descImage, 0, 0, canvasWidth, canvasHeight);
-		if (loopcount >= 90)
+		if (loopcount >= 300)
 			page++;
 	}
 	else if (page == 1) {
 		drawn = true;
 		ctx.drawImage(lookPcImage, 0, 0, canvasWidth, canvasHeight);
-		if (loopcount >= 180)
+		if (loopcount >= 90 + 300)
 			page++;
 	}
 	else {
