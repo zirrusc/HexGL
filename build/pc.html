@@ -57,12 +57,12 @@
 							<table class='addition'>
 								<tr>
 									<td>PC</td>
-									<td>WebGL<br>WebSocket</td>
-									<td>Google Chrome 16以降<br>Mozilla Firefox 11以降<br>Microsoft Internet Explorer 11以降</td>
+									<td>WebGL<br>HTML5 WebSocket, Canvas</td>
+									<td>Google Chrome 16以降<br>Mozilla Firefox 11以降</td>
 								</tr>
 								<tr>
 									<td>モバイル</td>
-									<td>WebSocket<br>傾きセンサー<br>加速度センサー<br>地磁気センサー</td>
+									<td>傾きセンサー<br>HTML5 WebSocket, Canvas</td>
 									<td>iOS 4.2以降</td>
 								</tr>
 							</table>
@@ -71,8 +71,11 @@
 					<div class='col-md-6'>
 						<div class='addition'>
 							<p>
-								※Node.jsのsocket.ioを使用して通信するため、WebSocketがサポートされていないブラウザでもAJAX long pollingなどを利用して通信できます。しかし、通信ラグが発生するため、WebSocketをサポートしたブラウザでプレイすることを強くおすすめします。<br>
-								※画像はWiiハンドルではありません。
+								・Node.jsのsocket.ioを使用して通信するため、WebSocketがサポートされていないブラウザでもAJAX long pollingなどを利用して通信できます。しかし、通信ラグが発生するため、WebSocketをサポートしたブラウザでプレイすることを強くおすすめします。<br>
+								・通信処理はネットワークの速度に依存します。<br>
+								・描画処理はGPU/CPUの種類、開いているアプリケーション、ウィンドウの大きさなどによって大きく左右されます。<br>
+								・Internet Explorerは対応外<br>
+								・画像はWiiハンドルではありません。
 							</p>
 						</div>
 					</div>
@@ -254,7 +257,7 @@
 		<script src="/js/postprocessing/BloomPass.js"></script>
 		<script src="/js/postprocessing/ShaderPass.js"></script>
 		<script src="/js/postprocessing/MaskPass.js"></script>
-		<script src="/js/Detector.js"></script>
+		<script src="/js/lib/Detector.js"></script>
 		<script src="/js/lib/Stats.js"></script>
 		<script src="/js/lib/dat-gui.js"></script>
 
@@ -280,14 +283,9 @@
 
 		<script src="/js/bkcore/hexgl/HexGL.js"></script>
 		
-		<script src='/js/hexgl-main.js'></script>
+		<script src='/js/bkcore/hexgl-main.js'></script>
 		
 		<script src='/js/lib/jquery-2_0_3_min.js'></script>
-		<script>
-			$(window).load(function () {
-				setQuality(1);
-			});
-		</script>
 		<script src='/socket.io/socket.io.js'></script>
 		<script src='/js/motion.js'></script>
 	</body>

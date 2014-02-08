@@ -1,4 +1,5 @@
 var port = process.argv[2] == undefined ? 80 : process.argv[2];
+var rootdir = process.argv[3] == undefined ? 'src' : process.argv[3];
 
 // express
 var express = require('express');
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'src')));
+app.use(express.static(path.join(__dirname, rootdir)));
 
 var server = http.createServer(app);
 

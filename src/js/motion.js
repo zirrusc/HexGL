@@ -64,6 +64,10 @@ mobile.ReportOrientation = function (data) {
 	}
 };
 
+$(window).load(function () {
+	setQuality(1);
+});
+
 var socket;
 
 $(function() {
