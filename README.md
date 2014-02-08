@@ -1,7 +1,7 @@
 Mobile Driver
 =========
 
-Racing game to steer the mobile.
+Racing game to steer by the mobile.
 
 ## Server
 1. Install [node.js](http://nodejs.org)
