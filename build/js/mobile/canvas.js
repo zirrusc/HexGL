@@ -3,15 +3,16 @@ var initedCanvas = false;
 var canvas;
 var ctx;
 var canvasWidth = 1000;
-var canvasHeightScale = 1.0 / 3.0 * 4.0;
+var canvasHeightScale = 1.0 / 9.0 * 16.0;
 var canvasHeight = canvasWidth * canvasHeightScale;
 var waitingLandscape = false;
 
 var istouch = false;
+var page = 0;
 
 // image
 var descImage = new Image();
-//var lookPcImage = new Image();
+var lookPcImage = new Image();
 var runningImage = new Image();
 var onTouchImage = new Image();
 
@@ -68,7 +69,7 @@ function initCanvas() {
 
 	// image
 	descImage.src = 'images/mobile-hands.png';
-	//lookPcImage.src = 'images/lookPcImage.png';
+	lookPcImage.src = 'images/lookPcImage.png';
 	runningImage.src = 'images/runningImage.png';
 	onTouchImage.src = 'images/onTouchImage.png';
 	
@@ -80,6 +81,7 @@ function initCanvas() {
 
 function canvasTouchStart() {
 	istouch = true;
+	page++;
 	socket.emit("report_motion", {
 		id: id,
 		roomid: roomid,
@@ -122,13 +124,19 @@ function drawCanvas() {
 	// normal draw 
 	var drawn = false;
 
-	if (loopcount < 90) {
+	if (page == 0) {
 		drawn = true;
 		ctx.drawImage(descImage, 0, 0, canvasWidth, canvasHeight);
+		if (loopcount >= 90)
+			page++;
 	}
-	else
-	{
-		//ctx.drawImage(lookPcImage, 0, 0, canvasWidth, canvasHeight);
+	else if (page == 1) {
+		drawn = true;
+		ctx.drawImage(lookPcImage, 0, 0, canvasWidth, canvasHeight);
+		if (loopcount >= 180)
+			page++;
+	}
+	else {
 		if (istouch) {
 			drawn = true;
 			ctx.drawImage(onTouchImage, 0, 0, canvasWidth, canvasHeight);
