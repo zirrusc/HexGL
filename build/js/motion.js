@@ -122,5 +122,14 @@ $(function() {
 var start_game = function (arg) {
 	console.log('START');
 	socket.emit('start', { id: id, roomid: roomid, mode: arg });
+	
+	//var b = document.getElementById("beta");
+	if (document.body.requestFullScreen)
+		document.body.requestFullScreen();
+	else if (document.body.webkitRequestFullScreen)
+		document.body.webkitRequestFullScreen();
+	else if (document.body.mozRequestFullScreen)
+		document.body.mozRequestFullScreen();
+	
 	beta(arg);
 };
