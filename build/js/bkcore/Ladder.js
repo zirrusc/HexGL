@@ -1,2 +1,37 @@
-var bkcore=bkcore||{};bkcore.Ladder={},bkcore.Ladder.global={},bkcore.Ladder.load=function(a){var b=encodeURIComponent(window.location.href);bkcore.Utils.request("brain.php",!1,function(b){try{bkcore.Ladder.global=JSON.parse(b.responseText),a&&a.call(window)}catch(c){console.warn("Unable to load ladder. "+c)}},{u:b})},bkcore.Ladder.displayLadder=function(a,b,c,d){var e=document.getElementById(a);if(void 0==e||void 0==bkcore.Ladder.global[b]||void 0==!bkcore.Ladder.global[b][c])return void console.warn("Undefined ladder.");for(var f=bkcore.Ladder.global[b][c],g="",h=(Math.min(void 0==d?10:d,f.length-1),0);h<f.length-1;h++){var i=bkcore.Timer.msToTime(f[h].score);g+='<span class="ladder-row"><b>'+(h+1)+". "+f[h].name+"</b><i>"+i.m+"'"+i.s+"''"+i.ms+"</i></span>"}e.innerHTML=g};
-//# sourceMappingURL=Ladder.map
+var bkcore = bkcore || {};
+bkcore.Ladder = {};
+bkcore.Ladder.global = {};
+bkcore.Ladder.load = function(callback) 
+{
+    var s = encodeURIComponent(window.location.href);
+    bkcore.Utils.request("brain.php", false, function(req) 
+    {
+        try {
+            bkcore.Ladder.global = JSON.parse(req.responseText);
+            if (callback)
+                callback.call(window);
+        } 
+        catch (e) 
+        {
+            console.warn('Unable to load ladder. ' + e);
+        }
+    }, {u: s});
+}
+bkcore.Ladder.displayLadder = function(id, track, mode, num) 
+{
+    var d = document.getElementById(id);
+    if (d == undefined || bkcore.Ladder.global[track] == undefined || !bkcore.Ladder.global[track][mode] == undefined) 
+    {
+        console.warn('Undefined ladder.');
+        return;
+    }
+    var l = bkcore.Ladder.global[track][mode];
+    var h = '';
+    var m = Math.min((num == undefined ? 10 : num), l.length - 1);
+    for (var i = 0; i < l.length - 1; i++) 
+    {
+        var t = bkcore.Timer.msToTime(l[i]['score']);
+        h += '<span class="ladder-row"><b>' + (i + 1) + '. ' + l[i]['name'] + '</b><i>' + t.m + '\'' + t.s + '\'\'' + t.ms + '</i></span>';
+    }
+    d.innerHTML = h;
+}

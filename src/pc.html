@@ -8,8 +8,8 @@
 		<link rel='apple-touch-icon' href='/images/favicon.png'>
 		
 		<link rel='stylesheet' href='bootstrap-3.0.3/css/bootstrap.min.css' type='text/css'>
-		<link rel="stylesheet" href="css/fonts.css" type="text/css" charset="utf-8">
-		<link rel="stylesheet" href="css/pc.css" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="css/fonts.min.css" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="css/style.min.css" type="text/css" charset="utf-8">
 	</head>
 
 	<body>
@@ -70,13 +70,13 @@
 					</div>
 					<div class='col-md-6'>
 						<div class='addition'>
-							<p>
-								・Node.jsのsocket.ioを使用して通信するため、WebSocketがサポートされていないブラウザでもAJAX long pollingなどを利用して通信できます。しかし、通信ラグが発生するため、WebSocketをサポートしたブラウザでプレイすることを強くおすすめします。<br>
-								・通信処理はネットワークの速度に依存します。<br>
-								・描画処理はGPU/CPUの種類、開いているアプリケーション、ウィンドウの大きさなどによって大きく左右されます。<br>
-								・Internet Explorerは対応外<br>
-								・画像はWiiハンドルではありません。
-							</p>
+							<ul class='addition'>
+								<li>Node.jsのsocket.ioを使用して通信するため、WebSocketがサポートされていないブラウザでもAJAX long pollingなどを利用して通信できます。しかし、通信ラグが発生するため、WebSocketをサポートしたブラウザでプレイすることを強くおすすめします。</li>
+								<li>通信処理はネットワークの速度に依存します。</li>
+								<li>描画処理はGPU/CPUの種類、開いているアプリケーション、ウィンドウの大きさなどによって大きく左右されます。</li>
+								<li>Internet Explorerは対応外</li>
+								<li>画像はWiiハンドルではありません。</li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -248,7 +248,9 @@
 		<div id="overlay"></div>
 		<div id="main"></div>
 		
-<!--		<script src="/js/pc.concat.js"></script> -->
+		<!--<script src="/js/pc.concat.js"></script>
+		<script src="/js/bkcore/hexgl/ShipControls.js"></script>-->
+
 
 		<script src="/js/lib/Three_dev.js"></script>
 		<script src="/js/bkcore/ShaderExtras.js"></script>
@@ -286,6 +288,7 @@
 		<script src='/js/bkcore/hexgl-main.js'></script>
 		
 		<script src='/js/lib/jquery-2_0_3_min.js'></script>
+-->
 		<script src='/socket.io/socket.io.js'></script>
 		<script src='/js/motion.js'></script>
 	</body>

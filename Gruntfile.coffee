@@ -3,7 +3,7 @@ module.exports = (grunt) ->
   grunt.initConfig       
     watch:
       files: ['src/**'],
-      tasks: ['copy','uglify', 'concat']
+      tasks: ['copy', 'concat']
     coffee:
       compile:
         options:
@@ -21,7 +21,7 @@ module.exports = (grunt) ->
         options:
           sourceMap: (fileName) ->
             fileName.replace /\.js$/, '.js.map'
-            except: [ '**/Ladder*' ]
+            except: [ 'ShipControls.js' ]
         files: [
             expand: true,
             cwd: 'src/js/',
@@ -90,5 +90,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-concat'
   
-  grunt.registerTask 'default', ['copy', 'uglify', 'concat']
+  grunt.registerTask 'default', ['copy', 'concat']
   

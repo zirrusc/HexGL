@@ -1,5 +1,5 @@
 var port = process.argv[2] == undefined ? 80 : process.argv[2];
-var rootdir = process.argv[3] == undefined ? 'src' : process.argv[3];
+var rootdir = process.argv[3] == undefined ? 'build' : process.argv[3];
 
 // express
 var express = require('express');

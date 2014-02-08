@@ -1,2 +1,52 @@
-THREE.DotScreenPass=function(a,b,c){var d=THREE.ShaderExtras.dotscreen;this.uniforms=THREE.UniformsUtils.clone(d.uniforms),void 0!==a&&this.uniforms.center.value.copy(a),void 0!==b&&(this.uniforms.angle.value=b),void 0!==c&&(this.uniforms.scale.value=c),this.material=new THREE.ShaderMaterial({uniforms:this.uniforms,vertexShader:d.vertexShader,fragmentShader:d.fragmentShader}),this.enabled=!0,this.renderToScreen=!1,this.needsSwap=!0},THREE.DotScreenPass.prototype={render:function(a,b,c){this.uniforms.tDiffuse.texture=c,this.uniforms.tSize.value.set(c.width,c.height),THREE.EffectComposer.quad.material=this.material,this.renderToScreen?a.render(THREE.EffectComposer.scene,THREE.EffectComposer.camera):a.render(THREE.EffectComposer.scene,THREE.EffectComposer.camera,b,!1)}};
-//# sourceMappingURL=DotScreenPass.map
+/**
+ * @author alteredq / http://alteredqualia.com/
+ */
+
+THREE.DotScreenPass = function ( center, angle, scale ) {
+
+	var shader = THREE.ShaderExtras[ "dotscreen" ];
+
+	this.uniforms = THREE.UniformsUtils.clone( shader.uniforms );
+
+	if ( center !== undefined )
+		this.uniforms[ "center" ].value.copy( center );
+
+	if ( angle !== undefined )	this.uniforms[ "angle"].value = angle;
+	if ( scale !== undefined )	this.uniforms[ "scale"].value = scale;
+
+	this.material = new THREE.ShaderMaterial( {
+
+		uniforms: this.uniforms,
+		vertexShader: shader.vertexShader,
+		fragmentShader: shader.fragmentShader
+
+	} );
+
+	this.enabled = true;
+	this.renderToScreen = false;
+	this.needsSwap = true;
+
+};
+
+THREE.DotScreenPass.prototype = {
+
+	render: function ( renderer, writeBuffer, readBuffer, delta ) {
+
+		this.uniforms[ "tDiffuse" ].texture = readBuffer;
+		this.uniforms[ "tSize" ].value.set( readBuffer.width, readBuffer.height );
+
+		THREE.EffectComposer.quad.material = this.material;
+
+		if ( this.renderToScreen ) {
+
+			renderer.render( THREE.EffectComposer.scene, THREE.EffectComposer.camera );
+
+		} else {
+
+			renderer.render( THREE.EffectComposer.scene, THREE.EffectComposer.camera, writeBuffer, false );
+
+		}
+
+	}
+
+};
