@@ -1,7 +1,7 @@
 Mobile Driver
 =========
 
-A racing game steering by mobile browser based on [HexGL](http://hexgl.bkcore.com).
+Racing game to steer the mobile.
 
 ## Server
 1. Install [node.js](http://nodejs.org)
