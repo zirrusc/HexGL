@@ -211,7 +211,7 @@ function initSocket() {
 	socket.on('failed_add_room_mobile' + id, function (data) {
 		// bug: この場所で表示をしようとすると背景色が加算されてしまう
 		// 回避策: ブラウザの更新
-		location.href = '/mobile.html?invalid_pin=1';
+		location.href = 'mobile.html?invalid_pin=1';
 	});
 	
 	socket.on('start', function (data) {
